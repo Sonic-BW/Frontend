@@ -11,7 +11,7 @@ import {
   H1,
   Button
 } from "./login-style.js";
-import { Image, Form} from "semantic-ui-react";
+import { Image, Form } from "semantic-ui-react";
 
 class Login extends Component {
   state = {
@@ -51,53 +51,55 @@ class Login extends Component {
     return (
       <PageDiv className="main">
         <p className="sign"> </p>
-        <H1>Sign In</H1>
+        <H1>SIGN IN</H1>
         <Form onSubmit={this.handleLogin}>
           <LoginContainer>
             <LoginInputsContainer>
               <Form.Field>
-              <div>
-                {this.props.error && (
-                  <div className="help-block"> Invalid Credentials </div>
-                )}
+                <div>
+                  {this.props.error && (
+                    <div className="help-block"> Invalid Credentials </div>
+                  )}
 
-                <Label>Username</Label>
+                  <Label>Username</Label>
 
-                <Input
-                  type="text"
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                  className="input"
-                  placeholder="User Name"
-                />
+                  <Input
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    className="input"
+                    placeholder="User Name"
+                  />
 
-                {this.state.submitted && !this.state.username && (
-                  <div className="help-block"> Username is required</div>
-                )}
-              </div>
-            </Form.Field>
+                  {this.state.submitted && !this.state.username && (
+                    <div className="help-block"> Username is required</div>
+                  )}
+                </div>
+              </Form.Field>
 
-            <Form.Field>
-            <div>
-              <Label>Password</Label>
-              <Input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-                className="input"
-                placeholder="Password"
-              />
+              <Form.Field>
+                <div>
+                  <Label>Password</Label>
+                  <Input
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    className="input"
+                    placeholder="Password"
+                  />
 
-              {this.state.submitted && !this.state.password && (
-                <div className="help-block"> Password is required</div>
-              )}
-            </div>
-            </Form.Field>
+                  {this.state.submitted && !this.state.password && (
+                    <div className="help-block"> Password is required</div>
+                  )}
+                </div>
+              </Form.Field>
             </LoginInputsContainer>
 
-            <Button class="ui fluid button" className="submit">Log in</Button>
+            <Button class="ui fluid button" className="submit">
+              Log in
+            </Button>
 
             <Image
               // onClick={this.toggleVisibility}

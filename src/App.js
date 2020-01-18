@@ -5,8 +5,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 //Auth
-import Login from "./Components/Auth/Login"
-import Registration from "./Components/Auth/Registration"
+import Login from "./Components/Auth/Login/Login"
+import Registration from "./Components/Auth/Registration/Registration"
 
 function App() {
   return (
