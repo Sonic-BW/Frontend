@@ -93,6 +93,9 @@ export const PageDiv = styled.div`
   min-width: 85%;
   min-height: 85%;
   padding-bottom: 100px;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover !important;
 
   //green bg border
   //   border: 20px double #02cac7;
@@ -155,7 +158,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 3px;
   width: 100% !important;
-  height: 15px !important;
+  height: 30px !important;
   margin: 0.5rem, 0.5rem;
   animation: 1s ${fadeInUpAnimation};
 `;
@@ -175,9 +178,9 @@ export const Button = styled.button`
 export const H1 = styled.h1`
   text-align: center;
   text-size: 20px;
-  color: #fff29d;
+  color: #FFF29C;
   margin: 0 auto;
-  margin-left: 25px;
+  // margin-left: 25px;
   padding-top: 50px;
   animation: 2s ${lightSpeedInAnimation}
 `;

@@ -92,12 +92,15 @@ export const PageDiv = styled.div`
   min-width: 85%;
   min-height: 85%;
   padding-bottom: 100px;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover !important;
 
   //green bg border
   //   border: 20px double #02cac7;
 
   //blue bg border
-  border: 20px double navy;
+  border: 15px double navy;
 `;
 
 // Form styling //
@@ -106,23 +109,6 @@ export const FormGroup = styled.form`
   display: block;
   margin: 1rem auto;
 `;
-
-// // Login container styling //
-// export const LoginContainer = styled.div`
-//   width: 50%;
-//   display: flex;
-//   flex-direction: column;
-
-//   align-content: space-around;
-//   align-items: center;
-//   margin: 0 auto;
-//   padding: 2rem;
-//   //   border: 1px solid red;
-
-//   @media (max-width: 700px) {
-//     width: 100%;
-//   }
-// `;
 
 // RegisterContainer Styling//
 export const RegisterContainer = styled.div`
@@ -136,9 +122,9 @@ export const RegisterContainer = styled.div`
   padding: 2rem;
   // border: 1px solid red;
 
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
 `;
 
 // Register Inputs Container Styling//
@@ -171,8 +157,8 @@ export const Input = styled.input`
   border: none;
   border-radius: 3px;
   width: 100% !important;
-  height: 15px !important;
-  margin: 0.5rem, 0.5rem;
+  height: 30px !important;
+  margin: 1rem, 0.5rem;
   animation: 1s ${fadeInUpAnimation};
 `;
 
@@ -183,7 +169,7 @@ export const Button = styled.button`
   padding: 1em 2em;
   // color: white !important;
   border-radius: 3px;
-  margin-left: 35px;
+  margin-left: 25px;
   margin-bottom: 35px;
   align-items: center;
 `;
@@ -192,9 +178,9 @@ export const Button = styled.button`
 export const H1 = styled.h1`
   text-align: center;
   text-size: 20px;
-  color: #fff29d;
+  color: #FFF29C;
   margin: 0 auto;
-  margin-left: 25px;
+  // margin-left: 25px;
   padding-top: 50px;
   animation: 2s ${lightSpeedInAnimation};
 `;

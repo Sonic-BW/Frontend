@@ -9,12 +9,10 @@ import {
   RegisterInputsContainer,
   Input,
   H1,
-  P,
-  Label,
-  Button
+  Label
 } from "./registration-style.js";
 
-import { Header, Icon, Modal, Form, Message } from "semantic-ui-react";
+import { Button , Form } from "semantic-ui-react";
 
 class Registration extends Component {
   state = {
@@ -58,6 +56,7 @@ class Registration extends Component {
 
   render() {
     return (
+      <div className = "registrationComponent">
         <PageDiv className="main">
           <p className="sign"> </p>
           <H1>REGISTER</H1>
@@ -119,16 +118,11 @@ class Registration extends Component {
                 <Button className="submit">Sign Up</Button>
                 </div>
 
-                <div className="login">
-                  <Link className="helpLink" to="/login">
-                    Login
-                  </Link>
-                </div>
-
               </RegisterInputsContainer>
             </RegisterContainer>
           </Form>
         </PageDiv>
+        </div>
     );
   }
 }

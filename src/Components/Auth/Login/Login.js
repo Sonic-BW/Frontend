@@ -9,9 +9,9 @@ import {
   Input,
   Label,
   H1,
-  Button
+  // Button
 } from "./login-style.js";
-import { Image, Form } from "semantic-ui-react";
+import { Image, Button, Form } from "semantic-ui-react";
 
 class Login extends Component {
   state = {
@@ -113,11 +113,6 @@ class Login extends Component {
             <div className="forgot">
               <Link className="helpLink" href="/">
                 Forgot Password?
-              </Link>
-            </div>
-            <div>
-              <Link className="helpLink" to="/register">
-                Sign Up
               </Link>
             </div>
           </LoginContainer>
