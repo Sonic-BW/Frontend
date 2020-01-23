@@ -1,0 +1,46 @@
+/* Sign In Input Username and Password Styling */
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  margin: 0.2rem;
+  background-color: white !important;
+  color: navy !important;
+}
+
+/* NavBar Sign In Button Styling */
+
+.ui.button.signinButton {
+  color: #61D1FF !important;
+  background-color: #436fff !important;
+  border: 5px solid #1e1ef5 !important;
+  font-weight: bold !important;
+  padding: 0.7rem !important;
+  font-size: 0.9rem !important;
+  margin: 0.2rem;
+  margin-left: 0.5rem !important;
+  text-decoration: none;
+}
+
+/* NavBar Register Button Styling */
+
+.ui.button.registerButton {
+  color: #61D1FF !important;
+  background-color: #436fff !important;
+  border: 5px solid #1e1ef5 !important;
+  font-weight: bold !important;
+  padding: 0.7rem !important;
+  font-size: 0.9rem !important;
+  margin: 0.2rem;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+  text-decoration: none;
+}
+
+.ui.button {
+  margin-top: 1.5rem !important;
+}
+
+div .registrationComponent {
+  min-height: 100vh;
+}
