@@ -7,9 +7,9 @@ export const NavBar = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 1.0rem 2rem 1rem 2.0rem;
+  padding: 1rem 2rem 1rem 2rem;
   align-items: center;
-  border-bottom: 1px solid #4D4D58; 
+  border-bottom: 1px solid #4d4d58;
   background-image: url("https://www.imageupload.net/upload-image/2020/01/18/fast.gif");
   background-size: 18vh !important;
   border: 20px double navy;
@@ -18,33 +18,30 @@ export const NavBar = styled.nav`
 // NavBar Buttons Component Container (contains Buttons) styling//
 
 export const ButtonGroup = styled.div`
-//   border: 1px solid red;
+  //   border: 1px solid red;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
 
-//   @media (max-width: 760px) {  
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-end;
-//     width: 100%;
-//   }
+  //   @media (max-width: 760px) {
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-items: flex-end;
+  //     width: 100%;
+  //   }
 `;
-
 
 // NavBar Buttons Container styling//
 
 export const NavBarButtonsContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  // border: 1px solid blue;
+  // justify-content: flex-end;
+  border: 1px solid blue;
 
-
-//   @media (max-width: 760px) {  
-//     width: 100%;
-//   }
+  //   @media (max-width: 760px) {
+  //     width: 100%;
+  //   }
 `;
-
 
 export const Button = styled.a`
   border: 1px solid #51e3c2;
@@ -69,7 +66,7 @@ export const Button = styled.a`
 // SONIC THE LAMBDOG header//
 
 export const ButtonLink = styled.button`
-  color: #FF2CBE;
+  color: white;
   font-weight: bold;
   padding: 0.3rem 0.6rem;
   font-size: 2.5rem;
@@ -77,6 +74,6 @@ export const ButtonLink = styled.button`
   font-family: Sonic;
   text-decoration: none;
   :hover {
-    color: white;
+    color: #ff2cbe;
   }
 `;

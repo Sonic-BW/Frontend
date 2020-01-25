@@ -37,10 +37,6 @@ input[type="password"] {
   text-decoration: none;
 }
 
-.ui.button {
-  margin-top: 1.5rem !important;
-}
-
-div .registrationComponent {
-  min-height: 100vh;
+.ui.button.submit {
+  margin-top: 2rem !important;
 }

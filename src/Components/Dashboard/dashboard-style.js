@@ -110,8 +110,8 @@ export const FormGroup = styled.form`
   margin: 1rem auto;
 `;
 
-// Login container styling //
-export const LoginContainer = styled.div`
+// Map container styling //
+export const MapContainer = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;

@@ -8,7 +8,7 @@ import {
   LoginInputsContainer,
   Input,
   Label,
-  H1,
+  H1
   // Button
 } from "./login-style.js";
 import { Image, Button, Form } from "semantic-ui-react";
@@ -35,7 +35,7 @@ class Login extends Component {
     this.setState({ submitted: true });
     if (this.state.username && this.state.password) {
       axios
-        .post("https://lambda-mud-test.herokuapp.com/api/login/", credentials)
+        .post("https://sonicthelambhog.herokuapp.com/api/login/", credentials)
         .then(res => {
           localStorage.setItem("key", res.data.key);
           this.setState({
@@ -49,75 +49,77 @@ class Login extends Component {
 
   render() {
     return (
-      <PageDiv className="main">
-        <p className="sign"> </p>
-        <H1>SIGN IN</H1>
-        <Form onSubmit={this.handleLogin}>
-          <LoginContainer>
-            <LoginInputsContainer>
-              <Form.Field>
-                <div>
-                  {this.props.error && (
-                    <div className="help-block"> Invalid Credentials </div>
-                  )}
+      <div className="loginComponent">
+        <PageDiv className="main">
+          <p className="sign"> </p>
+          <H1>SIGN IN</H1>
+          <Form onSubmit={this.handleLogin}>
+            <LoginContainer>
+              <LoginInputsContainer>
+                <Form.Field>
+                  <div>
+                    {this.props.error && (
+                      <div className="help-block"> Invalid Credentials </div>
+                    )}
 
-                  <Label>Username</Label>
+                    <Label>Username</Label>
 
-                  <Input
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                    className="input"
-                    placeholder="User Name"
-                  />
+                    <Input
+                      type="text"
+                      name="username"
+                      value={this.state.username}
+                      onChange={this.handleChange}
+                      className="input"
+                      placeholder="User Name"
+                    />
 
-                  {this.state.submitted && !this.state.username && (
-                    <div className="help-block"> Username is required</div>
-                  )}
-                </div>
-              </Form.Field>
+                    {this.state.submitted && !this.state.username && (
+                      <div className="help-block"> Username is required</div>
+                    )}
+                  </div>
+                </Form.Field>
 
-              <Form.Field>
-                <div>
-                  <Label>Password</Label>
-                  <Input
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    className="input"
-                    placeholder="Password"
-                  />
+                <Form.Field>
+                  <div>
+                    <Label>Password</Label>
+                    <Input
+                      type="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                      className="input"
+                      placeholder="Password"
+                    />
 
-                  {this.state.submitted && !this.state.password && (
-                    <div className="help-block"> Password is required</div>
-                  )}
-                </div>
-              </Form.Field>
-            </LoginInputsContainer>
+                    {this.state.submitted && !this.state.password && (
+                      <div className="help-block"> Password is required</div>
+                    )}
+                  </div>
+                </Form.Field>
+              </LoginInputsContainer>
 
-            <Button class="ui fluid button" className="submit">
-              Log in
-            </Button>
+              <Button class="ui fluid button" className="submit" type="submit">
+                Log in
+              </Button>
 
-            <Image
-              // onClick={this.toggleVisibility}
-              src="https://www.imageupload.net/upload-image/2020/01/18/login-gif.gif"
-              as="a"
-              size="large"
-              // href="/login"
-              id="loginImage"
-            />
+              <Image
+                // onClick={this.toggleVisibility}
+                src="https://www.imageupload.net/upload-image/2020/01/18/login-gif.gif"
+                as="a"
+                size="large"
+                // href="/login"
+                id="loginImage"
+              />
 
-            <div className="forgot">
-              <Link className="helpLink" href="/">
-                Forgot Password?
-              </Link>
-            </div>
-          </LoginContainer>
-        </Form>
-      </PageDiv>
+              <div className="forgot">
+                <Link className="helpLink" href="/">
+                  Forgot Password?
+                </Link>
+              </div>
+            </LoginContainer>
+          </Form>
+        </PageDiv>
+      </div>
     );
   }
 }
