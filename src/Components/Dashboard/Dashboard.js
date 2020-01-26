@@ -34,16 +34,43 @@ class Dashboard extends Component {
     s_to: "",
     e_to: "",
     w_to: "",
-    message: ""
+    message: "",
+    players: []
   };
 
+  updatePlayer = e => {
+    // Gets id, username and 
+    axios
+    .get("https://sonicthelambhog.herokuapp.com/api/adv/init", {
+      headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
+    })
+    .then(res => {
+      console.log("This is localStorage:", res.data)
+      localStorage.setItem("id", res.data.id);
+      localStorage.setItem("username", res.data.name);
+      localStorage.setItem("currentRoom", res.data.currentRoom);
+
+      this.setState({
+        id: res.data.id,
+        username: res.data.name,
+        currentRoom: res.data.currentRoom,
+        players: res.data.players
+      })
+    })
+};
+
   componentDidMount() {
+
+    // Gets id, username and 
+    this.updatePlayer();
+
     console.log("This is username:", this.state.username);
     console.log("This is password:", this.state.password);
     console.log("This is id:", this.state.id);
 
     axios
-    .get(`https://sonicthelambhog.herokuapp.com/api/users/${this.state.id}/`)
+    .get(`https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem("id")}/`
+    )
     .then(response => {
       this.setState({ 
         id: response.data.id,
@@ -55,11 +82,11 @@ class Dashboard extends Component {
     .catch(error => {
       console.log(error);
     });
-    
+
     // Gets user data -- id, username//
 
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/users/${this.state.id}/`)
+      .get(`https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem("id")}/`)
       .then(response => {
         this.setState({ 
           id: response.data.id,
@@ -74,7 +101,7 @@ class Dashboard extends Component {
 
     // Gets player data -- user, uuid, currentRoom //
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/players/${this.state.id}/`)
+      .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
       .then(response => {
         this.setState({
           user: response.data.user,
@@ -89,18 +116,26 @@ class Dashboard extends Component {
 
     // Gets current room data --  //
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${this.state.currentRoom}/`)
+      .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
       .then(response => {
         this.setState({ 
           currentRoom: response.data.id,
           title: response.data.title,
           description: response.data.description,
+          n_to: response.data.n_to,
+          s_to: response.data.s_to,
+          e_to: response.data.e_to,
+          w_to: response.data.w_to
         });
         console.log("This updated current room state:", this.state);
       })
       .catch(error => {
         console.log(error);
       });
+  }
+
+  componentDidUpdate() {
+    
   }
 
   //Trying to make buttons green or red depending on if you could move there
@@ -128,73 +163,178 @@ class Dashboard extends Component {
     } else {
       this.setState({ currentRoom: this.state.n_to });
 
-      axios.put(`https://sonicthelambhog.herokuapp.com/api/players/${this.state.id}/currentRoom/, ${this.state.currentRoom}/`)
+      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"n"}, {
+        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
+      })
+      .then(
+        // Gets where player is and sets currentRoom for frontend --  //
+        axios
+        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
+        .then(response => {
+          localStorage.setItem("currentRoom", response.data.currentRoom);
+          this.setState({ 
+            currentRoom: response.data.currentRoom,
+          });
+          console.log("This updated current room state:", this.state);
+        }))
+      .then(
+            // Get room information from localStorage --  //
+            axios
+            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
+            .then(response => {
+              this.setState({ 
+                title: response.data.title,
+                description: response.data.description,
+                n_to: response.data.n_to,
+                s_to: response.data.s_to,
+                e_to: response.data.e_to,
+                w_to: response.data.w_to
+              });
+              console.log("This updated current room state:", this.state);
+    })
+      )
       .then( response => {
-        console.log("Successfully updated current room!", this.state.currentRoom);
+        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
         console.log("This is new North state", this.state);
       })
-
-      axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${this.state.currentRoom}/`)
-        .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved north." });
-          console.log("This is new North state", this.state);
-        });
     }
   };
 
   onClickGoSouth = e => {
     e.preventDefault();
+    console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.s_to === 0) {
       this.setState({ message: "There is no room to move to." });
     } else {
       this.setState({ currentRoom: this.state.s_to });
 
-      axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/742/`)
+      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"s"}, {
+        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
+      })
+      .then(
+        // Gets new room id and sets currentRoom --  //
+        axios
+        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
         .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved south." });
-          console.log("This is new South state", this.state);
-        });
+          localStorage.setItem("currentRoom", response.data.currentRoom);
+          this.setState({ 
+            currentRoom: response.data.currentRoom,
+          });
+          console.log("This updated current room state:", this.state);
+        }))
+      .then(
+            // Get room information from localStorage --  //
+            axios
+            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
+            .then(response => {
+              this.setState({ 
+                title: response.data.title,
+                description: response.data.description,
+                n_to: response.data.n_to,
+                s_to: response.data.s_to,
+                e_to: response.data.e_to,
+                w_to: response.data.w_to
+              });
+              console.log("This updated current room state:", this.state);
+    })
+      )
+      .then( response => {
+        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
+        console.log("This is new South state", this.state);
+      })
     }
   };
 
   onClickGoEast = e => {
     e.preventDefault();
+    console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.e_to === 0) {
       this.setState({ message: "There is no room to move to." });
     } else {
       this.setState({ currentRoom: this.state.e_to });
 
-      axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/742/`)
+      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"e"}, {
+        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
+      })
+      .then(
+        // Gets new room id and sets currentRoom --  //
+        axios
+        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
         .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved east." });
-          console.log("This is new East state", this.state);
-        });
+          localStorage.setItem("currentRoom", response.data.currentRoom);
+          this.setState({ 
+            currentRoom: response.data.currentRoom,
+          });
+          console.log("This updated current room state:", this.state);
+        }))
+      .then(
+            // Get room information from localStorage --  //
+            axios
+            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
+            .then(response => {
+              this.setState({ 
+                title: response.data.title,
+                description: response.data.description,
+                n_to: response.data.n_to,
+                s_to: response.data.s_to,
+                e_to: response.data.e_to,
+                w_to: response.data.w_to
+              });
+              console.log("This updated current room state:", this.state);
+    })
+      )
+      .then( response => {
+        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
+        console.log("This is new East state", this.state);
+      })
     }
   };
 
   onClickGoWest = e => {
     e.preventDefault();
+    console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.w_to === 0) {
       this.setState({ message: "There is no room to move to." });
     } else {
       this.setState({ currentRoom: this.state.w_to });
 
-      axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/742/`)
+      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"w"}, {
+        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
+      })
+      .then(
+        // Gets new room id and sets currentRoom --  //
+        axios
+        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
         .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved west." });
-          console.log("This is new West state", this.state);
-        });
+          localStorage.setItem("currentRoom", response.data.currentRoom);
+          this.setState({ 
+            currentRoom: response.data.currentRoom,
+          });
+          console.log("This updated current room state:", this.state);
+        }))
+      .then(
+            // Get room information from localStorage --  //
+            axios
+            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
+            .then(response => {
+              this.setState({ 
+                title: response.data.title,
+                description: response.data.description,
+                n_to: response.data.n_to,
+                s_to: response.data.s_to,
+                e_to: response.data.e_to,
+                w_to: response.data.w_to
+              });
+              console.log("This updated current room state:", this.state);
+    })
+      )
+      .then( response => {
+        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
+        console.log("This is new West state", this.state);
+      })
     }
   };
 
@@ -228,6 +368,8 @@ class Dashboard extends Component {
                   <P>{this.state.title}</P>
                   <P>Description:</P>
                   <P>{this.state.description}</P>
+                  <P>Players in room:</P>
+                  <P>{this.state.players}</P>
                 </RoomInfoContainer>
 
                 <PlayerInfoContainer>
@@ -246,10 +388,10 @@ class Dashboard extends Component {
                   <Button className="southButton" onClick={this.onClickGoSouth}>
                     <Icon name="angle double down"></Icon>
                   </Button>
-                  <Button className="westButton" onClick={this.onClickGoEast}>
+                  <Button className="westButton" onClick={this.onClickGoWest}>
                     <Icon name="angle double left"></Icon>
                   </Button>
-                  <Button className="eastButton" onClick={this.onClickGoWest}>
+                  <Button className="eastButton" onClick={this.onClickGoEast}>
                     <Icon name="angle double right"></Icon>
                   </Button>
                 </MovementContainer>
