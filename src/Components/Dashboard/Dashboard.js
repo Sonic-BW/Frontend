@@ -176,28 +176,29 @@ class Dashboard extends Component {
         console.log("This is response data:", response.data);
         this.setState({ currentRoom: response.data.currentRoom });
         localStorage.setItem("currentRoom", response.data.currentRoom);
+      })
+      .then(response => {
+        axios
+          .get(
+            `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+              "currentRoom"
+            )}/`
+          )
+          .then(response => {
+            console.log("This is updated room response data:", response.data);
+            this.setState({
+              currentRoom: response.data.id,
+              title: response.data.title,
+              description: response.data.description,
+              n_to: response.data.n_to,
+              s_to: response.data.s_to,
+              e_to: response.data.e_to,
+              w_to: response.data.w_to
+            });
+          });
       });
 
-    axios
-      .get(
-        `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
-          "currentRoom"
-        )}/`
-      )
-      .then(response => {
-        console.log("This is updated room response data:", response.data);
-        this.setState({
-          currentRoom: response.data.id,
-          title: response.data.title,
-          description: response.data.description,
-          n_to: response.data.n_to,
-          s_to: response.data.s_to,
-          e_to: response.data.e_to,
-          w_to: response.data.w_to
-        });
-      });
-      
-      console.log(
+    console.log(
       "This updated new current room state with information:",
       this.state
     );
@@ -205,31 +206,31 @@ class Dashboard extends Component {
     console.log("This updated new current room state:", this.state);
   };
 
-  // Get room information by currentRoom
-  updateCurrentRoom = e => {
-    axios
-      .get(
-        `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
-          "currentRoom"
-        )}/`
-      )
-      .then(response => {
-        console.log("This is updated room response data:", response.data);
-        this.setState({
-          currentRoom: response.data.id,
-          title: response.data.title,
-          description: response.data.description,
-          n_to: response.data.n_to,
-          s_to: response.data.s_to,
-          e_to: response.data.e_to,
-          w_to: response.data.w_to
-        });
-      });
-    console.log(
-      "This updated new current room state with information:",
-      this.state
-    );
-  };
+  // // Get room information by currentRoom
+  // updateCurrentRoom = e => {
+  //   axios
+  //     .get(
+  //       `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+  //         "currentRoom"
+  //       )}/`
+  //     )
+  //     .then(response => {
+  //       console.log("This is updated room response data:", response.data);
+  //       this.setState({
+  //         currentRoom: response.data.id,
+  //         title: response.data.title,
+  //         description: response.data.description,
+  //         n_to: response.data.n_to,
+  //         s_to: response.data.s_to,
+  //         e_to: response.data.e_to,
+  //         w_to: response.data.w_to
+  //       });
+  //     });
+  //   console.log(
+  //     "This updated new current room state with information:",
+  //     this.state
+  //   );
+  // };
 
   onClickGoNorth = e => {
     console.log("Old current room!", this.state.currentRoom);
@@ -250,12 +251,7 @@ class Dashboard extends Component {
 
         .then(response => {
           this.getCurrentRoom();
-        })
-
-        // Get room information from localStorage --  //
-        // .then(response => {
-        //   this.updateCurrentRoom();
-        // })
+        });
     }
   };
 
@@ -276,48 +272,11 @@ class Dashboard extends Component {
             headers: { Authorization: "Token " + localStorage.getItem("Token") }
           }
         )
-        .then(
-          // Gets new room id and sets currentRoom --  //
-          axios
-            .get(
-              `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
-                "id"
-              )}/`
-            )
-            .then(response => {
-              localStorage.setItem("currentRoom", response.data.currentRoom);
-              this.setState({
-                currentRoom: response.data.currentRoom
-              });
-              console.log("This updated current room state:", this.state);
-            })
-        )
-        .then(
-          // Get room information from localStorage --  //
-          axios
-            .get(
-              `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
-                "currentRoom"
-              )}/`
-            )
-            .then(response => {
-              this.setState({
-                title: response.data.title,
-                description: response.data.description,
-                n_to: response.data.n_to,
-                s_to: response.data.s_to,
-                e_to: response.data.e_to,
-                w_to: response.data.w_to
-              });
-              console.log("This updated current room state:", this.state);
-            })
-        )
+
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
-          console.log(
-            "Successfully updated current room!",
-            localStorage.getItem("currentRoom")
-          );
-          console.log("This is new South state", this.state);
+          this.getCurrentRoom();
         });
     }
   };
@@ -340,22 +299,10 @@ class Dashboard extends Component {
           }
         )
 
-        // Gets new room id and sets currentRoom --  //
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
           this.getCurrentRoom();
-        })
-        .then(response => {
-          this.updateCurrentRoom();
-        })
-
-        // Get room information from localStorage --  //
-
-        .then(response => {
-          console.log(
-            "Successfully updated current room!",
-            localStorage.getItem("currentRoom")
-          );
-          console.log("This is new East state", this.state);
         });
     }
   };
@@ -377,48 +324,11 @@ class Dashboard extends Component {
             headers: { Authorization: "Token " + localStorage.getItem("Token") }
           }
         )
-        .then(
-          // Gets new room id and sets currentRoom --  //
-          axios
-            .get(
-              `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
-                "id"
-              )}/`
-            )
-            .then(response => {
-              localStorage.setItem("currentRoom", response.data.currentRoom);
-              this.setState({
-                currentRoom: response.data.currentRoom
-              });
-              console.log("This updated current room state:", this.state);
-            })
-        )
-        .then(
-          // Get room information from localStorage --  //
-          axios
-            .get(
-              `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
-                "currentRoom"
-              )}/`
-            )
-            .then(response => {
-              this.setState({
-                title: response.data.title,
-                description: response.data.description,
-                n_to: response.data.n_to,
-                s_to: response.data.s_to,
-                e_to: response.data.e_to,
-                w_to: response.data.w_to
-              });
-              console.log("This updated current room state:", this.state);
-            })
-        )
+
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
-          console.log(
-            "Successfully updated current room!",
-            localStorage.getItem("currentRoom")
-          );
-          console.log("This is new West state", this.state);
+          this.getCurrentRoom();
         });
     }
   };
