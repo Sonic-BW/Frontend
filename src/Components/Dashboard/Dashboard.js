@@ -39,14 +39,32 @@ class Dashboard extends Component {
 
   componentDidMount() {
     console.log("This is username:", this.state.username);
-    console.log("This is username:", this.state.username);
     console.log("This is password:", this.state.password);
     console.log("This is id:", this.state.id);
-    // Gets user data -- id, username//
+
     axios
-      .get("https://sonicthelambhog.herokuapp.com/api/users/4/")
+    .get(`https://sonicthelambhog.herokuapp.com/api/users/${this.state.id}/`)
+    .then(response => {
+      this.setState({ 
+        id: response.data.id,
+        username: response.data.username
+      });
+      console.log(response.data);
+      console.log("This is updated user state:", this.state);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    
+    // Gets user data -- id, username//
+
+    axios
+      .get(`https://sonicthelambhog.herokuapp.com/api/users/${this.state.id}/`)
       .then(response => {
-        this.setState({ ...this.state, ...response.data });
+        this.setState({ 
+          id: response.data.id,
+          username: response.data.username
+        });
         console.log(response.data);
         console.log("This is updated user state:", this.state);
       })
@@ -56,9 +74,13 @@ class Dashboard extends Component {
 
     // Gets player data -- user, uuid, currentRoom //
     axios
-      .get("https://sonicthelambhog.herokuapp.com/api/players/4/")
+      .get(`https://sonicthelambhog.herokuapp.com/api/players/${this.state.id}/`)
       .then(response => {
-        this.setState({ ...this.state, ...response.data });
+        this.setState({
+          user: response.data.user,
+          uuid: response.data.uuid,
+          currentRoom: response.data.currentRoom
+        });
         console.log("This is updated player state:", this.state);
       })
       .catch(error => {
@@ -67,9 +89,13 @@ class Dashboard extends Component {
 
     // Gets current room data --  //
     axios
-      .get("https://sonicthelambhog.herokuapp.com/api/rooms/741/")
+      .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${this.state.currentRoom}/`)
       .then(response => {
-        this.setState({ ...this.state, ...response.data });
+        this.setState({ 
+          currentRoom: response.data.id,
+          title: response.data.title,
+          description: response.data.description,
+        });
         console.log("This updated current room state:", this.state);
       })
       .catch(error => {
@@ -95,11 +121,18 @@ class Dashboard extends Component {
 
   onClickGoNorth = e => {
     e.preventDefault();
+    console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.n_to === 0) {
       this.setState({ message: "There is no room to move to." });
     } else {
       this.setState({ currentRoom: this.state.n_to });
+
+      axios.put(`https://sonicthelambhog.herokuapp.com/api/players/${this.state.id}/currentRoom/, ${this.state.currentRoom}/`)
+      .then( response => {
+        console.log("Successfully updated current room!", this.state.currentRoom);
+        console.log("This is new North state", this.state);
+      })
 
       axios
         .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${this.state.currentRoom}/`)
