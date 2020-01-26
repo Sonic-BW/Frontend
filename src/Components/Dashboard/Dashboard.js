@@ -17,10 +17,35 @@ import {
   P,
   H1
 } from "./dashboard-style";
-import { Image, Button, Form, Icon, Container } from "semantic-ui-react";
+import {
+  Image,
+  Message,
+  Button,
+  Transition,
+  Icon,
+  Container
+} from "semantic-ui-react";
+
+const transitions = [
+  'jiggle',
+  'flash',
+  'shake',
+  'pulse',
+  'tada',
+  'bounce',
+  'glow',
+]
+
+const options = transitions.map((name) => ({
+  key: name,
+  text: name,
+  value: name,
+}))
+
 
 class Dashboard extends Component {
   state = {
+    visible: true,
     id: "",
     username: "",
     user: "",
@@ -34,9 +59,12 @@ class Dashboard extends Component {
     s_to: "",
     e_to: "",
     w_to: "",
-    message: "",
+    message: null,
     players: []
   };
+
+  toggleVisibility = () =>
+    this.setState(prevState => ({ visible: !prevState.visible }));
 
   updatePlayer = e => {
     // Gets id, username and
@@ -148,8 +176,6 @@ class Dashboard extends Component {
       });
   }
 
-  componentDidUpdate() {}
-
   //Trying to make buttons green or red depending on if you could move there
   // componentDidUpdate() {
   //   if(this.n_to === 0){
@@ -206,38 +232,13 @@ class Dashboard extends Component {
     console.log("This updated new current room state:", this.state);
   };
 
-  // // Get room information by currentRoom
-  // updateCurrentRoom = e => {
-  //   axios
-  //     .get(
-  //       `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
-  //         "currentRoom"
-  //       )}/`
-  //     )
-  //     .then(response => {
-  //       console.log("This is updated room response data:", response.data);
-  //       this.setState({
-  //         currentRoom: response.data.id,
-  //         title: response.data.title,
-  //         description: response.data.description,
-  //         n_to: response.data.n_to,
-  //         s_to: response.data.s_to,
-  //         e_to: response.data.e_to,
-  //         w_to: response.data.w_to
-  //       });
-  //     });
-  //   console.log(
-  //     "This updated new current room state with information:",
-  //     this.state
-  //   );
-  // };
-
   onClickGoNorth = e => {
     console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.n_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
+      this.setState({ message: false });
       axios
         .post(
           "https://sonicthelambhog.herokuapp.com/api/adv/move/",
@@ -260,8 +261,9 @@ class Dashboard extends Component {
     console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.s_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
+      this.setState({ message: false });
       this.setState({ currentRoom: this.state.s_to });
 
       axios
@@ -286,8 +288,9 @@ class Dashboard extends Component {
     console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.e_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
+      this.setState({ message: false });
       this.setState({ currentRoom: this.state.e_to });
 
       axios
@@ -312,8 +315,9 @@ class Dashboard extends Component {
     console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.w_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
+      this.setState({ message: false });
       this.setState({ currentRoom: this.state.w_to });
 
       axios
@@ -334,6 +338,8 @@ class Dashboard extends Component {
   };
 
   render() {
+    const { visible } = this.state;
+
     return (
       <div className="dashboardComponent">
         <PageDiv className="main">
@@ -357,20 +363,44 @@ class Dashboard extends Component {
               <InfoContainer>
                 <RoomInfoContainer>
                   <H1>Room Stats:</H1>
-                  <P>You are in room (currentRoom):</P>
-                  <P>{this.state.currentRoom}</P>
-                  <P>You are currently in (Title):</P>
+                  <P>You are currently in:</P>
                   <P>{this.state.title}</P>
                   <P>Description:</P>
                   <P>{this.state.description}</P>
                   <P>Players in room:</P>
-                  <P>{this.state.players}</P>
+                  {this.state.players.length === 0 && (
+                    <P>You're all alone.</P>
+                  )}
+                  {this.state.players.length > 0 && (
+                    <P>{this.state.players}</P>
+                  )}
                 </RoomInfoContainer>
 
                 <PlayerInfoContainer>
                   <H1>Players Stats:</H1>
                   <P>Username: {this.state.username}</P>
-                  <P>Message: {this.state.message}</P>
+
+                  {this.state.message === true && (
+                    <Transition
+                      visible={visible}
+                      animation="flash"
+                      duration={600}
+                    >
+                      <Message
+                        color="red"
+                        header="There is no room to move to."
+                      />
+                    </Transition>
+                  )}
+                  {this.state.message === false && (
+                    <Transition
+                      visible={visible}
+                      animation="flash"
+                      duration={600}
+                    >
+                      <Message color="green" header="Moving to next room." />
+                    </Transition>
+                  )}
                 </PlayerInfoContainer>
               </InfoContainer>
 
