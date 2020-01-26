@@ -11,6 +11,7 @@ import Navbar from "./Components/Navbar/Navbar.js"
 //Auth
 import Login from "./Components/Auth/Login/Login"
 import Registration from "./Components/Auth/Registration/Registration"
+import Dashboard from "./Components/Dashboard/Dashboard"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Navbar />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Registration} />
+        <Route path="/dashboard" exact component={Dashboard} />
       </div>
     </Router>
   );

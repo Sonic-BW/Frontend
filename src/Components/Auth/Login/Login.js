@@ -17,6 +17,7 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
+    id: "",
     submitted: false
   };
 
@@ -30,19 +31,24 @@ class Login extends Component {
     e.preventDefault();
     const credentials = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      id: this.state.id
     };
     this.setState({ submitted: true });
     if (this.state.username && this.state.password) {
       axios
         .post("https://sonicthelambhog.herokuapp.com/api/login/", credentials)
         .then(res => {
+          console.log(res.data)
           localStorage.setItem("key", res.data.key);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("name", res.data.id);
           this.setState({
             username: "",
-            password: ""
+            password: "",
+            id: ""
           });
-          this.props.history.push(`/re`);
+          this.props.history.push(`/dashboard`, credentials);
         });
     }
   };

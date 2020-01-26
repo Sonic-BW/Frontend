@@ -110,6 +110,22 @@ export const FormGroup = styled.form`
   margin: 1rem auto;
 `;
 
+// Split container styling //
+export const SplitContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+
 // Map container styling //
 export const MapContainer = styled.div`
   width: 50%;
@@ -120,20 +136,89 @@ export const MapContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  //   border: 1px solid red;
+  border: 5px solid navy;
 
   @media (max-width: 700px) {
     width: 100%;
   }
 `;
 
-// Login Inputs container styling//
-export const LoginInputsContainer = styled.div`
+// Right side container styling //
+export const RightContainer = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+// Information container styling //
+export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+
+// Player Info container styling//
+export const PlayerInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  // border: 1px solid red;
+  border: 1px solid red;
+  width: 100%;
+`;
+
+// Room Info container styling//
+export const RoomInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  border: 1px solid red;
+  width: 100%;
+`;
+
+// Movement Header container styling //
+export const MovementHeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+// Movement container styling//
+export const MovementContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: center;
+  // align-items: center;
+  border: 1px solid red;
   width: 100%;
 `;
 
@@ -182,4 +267,10 @@ export const H1 = styled.h1`
   // margin-left: 25px;
   padding-top: 50px;
   animation: 2s ${lightSpeedInAnimation};
+`;
+
+// P styling//
+export const P = styled.p`
+  text-align: center;
+  color: white;
 `;

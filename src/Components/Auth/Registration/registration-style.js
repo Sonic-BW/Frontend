@@ -1,10 +1,10 @@
 import styled, { keyframes } from "styled-components"; //for styling
-import { tada , bounce , fadeInUp, lightSpeedIn } from "react-animations"; //for animation
+import { tada, bounce, fadeInUp, lightSpeedIn } from "react-animations"; //for animation
 
 const bounceAnimation = keyframes`${bounce}`;
 const tadaAnimation = keyframes`${tada}`;
-const fadeInUpAnimation = keyframes`${fadeInUp}`
-const lightSpeedInAnimation = keyframes`${lightSpeedIn}`
+const fadeInUpAnimation = keyframes`${fadeInUp}`;
+const lightSpeedInAnimation = keyframes`${lightSpeedIn}`;
 
 // Bouncing Animation
 const BouncyDiv = styled.div`
@@ -178,7 +178,7 @@ export const Button = styled.button`
 export const H1 = styled.h1`
   text-align: center;
   text-size: 20px;
-  color: #FFF29C;
+  color: #fff29c;
   margin: 0 auto;
   // margin-left: 25px;
   padding-top: 50px;
