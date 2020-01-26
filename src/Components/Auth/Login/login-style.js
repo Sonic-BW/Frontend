@@ -1,11 +1,10 @@
 import styled, { keyframes } from "styled-components"; //for styling
-import { tada , bounce, fadeInUp , lightSpeedIn } from "react-animations"; //for animation
+import { tada, bounce, fadeInUp, lightSpeedIn } from "react-animations"; //for animation
 
 const bounceAnimation = keyframes`${bounce}`;
-const tadaAnimation = keyframes`${tada}`
-const fadeInUpAnimation = keyframes`${fadeInUp}`
-const lightSpeedInAnimation = keyframes`${lightSpeedIn}`
-
+const tadaAnimation = keyframes`${tada}`;
+const fadeInUpAnimation = keyframes`${fadeInUp}`;
+const lightSpeedInAnimation = keyframes`${lightSpeedIn}`;
 
 // Bouncing Animation
 const BouncyDiv = styled.div`
@@ -92,7 +91,7 @@ export const PageDiv = styled.div`
 
   min-width: 85%;
   min-height: 85%;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover !important;
@@ -159,7 +158,7 @@ export const Input = styled.input`
   border-radius: 3px;
   width: 100% !important;
   height: 30px !important;
-  margin: 0.5rem, 0.5rem;
+  margin: 1rem, 0.5rem;
   animation: 1s ${fadeInUpAnimation};
 `;
 
@@ -178,9 +177,9 @@ export const Button = styled.button`
 export const H1 = styled.h1`
   text-align: center;
   text-size: 20px;
-  color: #FFF29C;
+  color: #fff29c;
   margin: 0 auto;
   // margin-left: 25px;
   padding-top: 50px;
-  animation: 2s ${lightSpeedInAnimation}
+  animation: 2s ${lightSpeedInAnimation};
 `;

@@ -91,7 +91,7 @@ export const PageDiv = styled.div`
 
   min-width: 85%;
   min-height: 85%;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover !important;
@@ -100,7 +100,7 @@ export const PageDiv = styled.div`
   //   border: 20px double #02cac7;
 
   //blue bg border
-  border: 15px double navy;
+  border: 20px double navy;
 `;
 
 // Form styling //
@@ -110,30 +110,115 @@ export const FormGroup = styled.form`
   margin: 1rem auto;
 `;
 
-// RegisterContainer Styling//
-export const RegisterContainer = styled.div`
-  width: 50%
+// Split container styling //
+export const SplitContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+
+// Map container styling //
+export const MapContainer = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+// Right side container styling //
+export const RightContainer = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+// Information container styling //
+export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-content: space-around;
   align-items: center;
   margin: 0 auto;
-  padding-bottom: 100px;
   padding: 2rem;
-  // border: 1px solid red;
+  border: 5px solid navy;
 
-  // @media (max-width: 700px) {
-  //   width: 100%;
-  // }
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
-// Register Inputs Container Styling//
-export const RegisterInputsContainer = styled.div`
+
+// Player Info container styling//
+export const PlayerInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  // border: 1px solid red;
+  border: 1px solid red;
+  width: 100%;
+`;
+
+// Room Info container styling//
+export const RoomInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  border: 1px solid red;
+  width: 100%;
+`;
+
+// Movement Header container styling //
+export const MovementHeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid navy;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+// Movement container styling//
+export const MovementContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: center;
+  // align-items: center;
+  border: 1px solid red;
   width: 100%;
 `;
 
@@ -146,7 +231,7 @@ export const Label = styled.label`
   //   color: #0521b0 !important;
   color: white !important;
   padding: 0.25em;
-  max-width: 250px;
+  max-width: 300px;
 `;
 
 // Input Styling //
@@ -169,8 +254,7 @@ export const Button = styled.button`
   padding: 1em 2em;
   // color: white !important;
   border-radius: 3px;
-  margin-left: 25px;
-  margin-bottom: 35px;
+  margin-left: 35px;
   align-items: center;
 `;
 
@@ -183,4 +267,10 @@ export const H1 = styled.h1`
   // margin-left: 25px;
   padding-top: 50px;
   animation: 2s ${lightSpeedInAnimation};
+`;
+
+// P styling//
+export const P = styled.p`
+  text-align: center;
+  color: white;
 `;

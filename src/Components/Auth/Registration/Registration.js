@@ -12,7 +12,7 @@ import {
   Label
 } from "./registration-style.js";
 
-import { Button , Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 
 class Registration extends Component {
   state = {
@@ -39,7 +39,7 @@ class Registration extends Component {
     if (this.state.username && this.state.password1 && this.state.password2) {
       axios
         .post(
-          "https://lambda-mud-test.herokuapp.com/api/registration/",
+          "https://sonicthelambhog.herokuapp.com/api/registration/",
           credentials
         )
         .then(res => {
@@ -49,14 +49,14 @@ class Registration extends Component {
             password1: "",
             password2: ""
           });
-          this.props.history.push(`/dash`);
+          this.props.history.push(`/dashboard`);
         });
     }
   };
 
   render() {
     return (
-      <div className = "registrationComponent">
+      <div className="registrationComponent">
         <PageDiv className="main">
           <p className="sign"> </p>
           <H1>REGISTER</H1>
@@ -67,17 +67,17 @@ class Registration extends Component {
                   {this.props.error && (
                     <div className="help-block"> Invalid Credentials </div>
                   )}
-                <Label>Username</Label>
-                <Input
-                  type="text"
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                  className="input"
-                  placeholder="User Name"
-                />
+                  <Label>Username</Label>
+                  <Input
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    className="input"
+                    placeholder="User Name"
+                  />
 
-                {this.state.submitted && !this.state.username && (
+                  {this.state.submitted && !this.state.username && (
                     <div className="help-block">Username is required</div>
                   )}
                 </div>
@@ -90,7 +90,7 @@ class Registration extends Component {
                     value={this.state.password1}
                     onChange={this.handleChange}
                     className="input"
-                    placeholder="Password1"
+                    placeholder="Password"
                   />
 
                   {this.state.submitted && !this.state.password1 && (
@@ -106,23 +106,26 @@ class Registration extends Component {
                     value={this.state.password2}
                     onChange={this.handleChange}
                     className="input"
-                    placeholder="Password2"
+                    placeholder="Confirm Password"
                   />
 
                   {this.state.submitted && !this.state.password2 && (
-                    <div className="help-block">Confirm password is required</div>
+                    <div className="help-block">
+                      Confirm password is required
+                    </div>
                   )}
                 </div>
 
                 <div>
-                <Button className="submit">Sign Up</Button>
+                  <Button className="submit" type="submit">
+                    Sign Up
+                  </Button>
                 </div>
-
               </RegisterInputsContainer>
             </RegisterContainer>
           </Form>
         </PageDiv>
-        </div>
+      </div>
     );
   }
 }
