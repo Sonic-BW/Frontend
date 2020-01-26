@@ -39,29 +39,28 @@ class Dashboard extends Component {
   };
 
   updatePlayer = e => {
-    // Gets id, username and 
+    // Gets id, username and
     axios
-    .get("https://sonicthelambhog.herokuapp.com/api/adv/init", {
-      headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
-    })
-    .then(res => {
-      console.log("This is localStorage:", res.data)
-      localStorage.setItem("id", res.data.id);
-      localStorage.setItem("username", res.data.name);
-      localStorage.setItem("currentRoom", res.data.currentRoom);
-
-      this.setState({
-        id: res.data.id,
-        username: res.data.name,
-        currentRoom: res.data.currentRoom,
-        players: res.data.players
+      .get("https://sonicthelambhog.herokuapp.com/api/adv/init", {
+        headers: { Authorization: "Token " + localStorage.getItem("Token") }
       })
-    })
-};
+      .then(res => {
+        console.log("This is localStorage:", res.data);
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("username", res.data.name);
+        localStorage.setItem("currentRoom", res.data.currentRoom);
+
+        this.setState({
+          id: res.data.id,
+          username: res.data.name,
+          currentRoom: res.data.currentRoom,
+          players: res.data.players
+        });
+      });
+  };
 
   componentDidMount() {
-
-    // Gets id, username and 
+    // Gets id, username and
     this.updatePlayer();
 
     console.log("This is username:", this.state.username);
@@ -69,26 +68,33 @@ class Dashboard extends Component {
     console.log("This is id:", this.state.id);
 
     axios
-    .get(`https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem("id")}/`
-    )
-    .then(response => {
-      this.setState({ 
-        id: response.data.id,
-        username: response.data.username
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem(
+          "id"
+        )}/`
+      )
+      .then(response => {
+        this.setState({
+          id: response.data.id,
+          username: response.data.username
+        });
+        console.log(response.data);
+        console.log("This is updated user state:", this.state);
+      })
+      .catch(error => {
+        console.log(error);
       });
-      console.log(response.data);
-      console.log("This is updated user state:", this.state);
-    })
-    .catch(error => {
-      console.log(error);
-    });
 
     // Gets user data -- id, username//
 
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem("id")}/`)
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem(
+          "id"
+        )}/`
+      )
       .then(response => {
-        this.setState({ 
+        this.setState({
           id: response.data.id,
           username: response.data.username
         });
@@ -101,7 +107,11 @@ class Dashboard extends Component {
 
     // Gets player data -- user, uuid, currentRoom //
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
+          "id"
+        )}/`
+      )
       .then(response => {
         this.setState({
           user: response.data.user,
@@ -116,9 +126,13 @@ class Dashboard extends Component {
 
     // Gets current room data --  //
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+          "currentRoom"
+        )}/`
+      )
       .then(response => {
-        this.setState({ 
+        this.setState({
           currentRoom: response.data.id,
           title: response.data.title,
           description: response.data.description,
@@ -134,9 +148,7 @@ class Dashboard extends Component {
       });
   }
 
-  componentDidUpdate() {
-    
-  }
+  componentDidUpdate() {}
 
   //Trying to make buttons green or red depending on if you could move there
   // componentDidUpdate() {
@@ -146,57 +158,104 @@ class Dashboard extends Component {
 
   // }
 
-
-
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
+  // Get current room of player by id
+  getCurrentRoom = e => {
+    axios
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
+          "id"
+        )}/`
+      )
+      .then(response => {
+        console.log("This is response data:", response.data);
+        this.setState({ currentRoom: response.data.currentRoom });
+        localStorage.setItem("currentRoom", response.data.currentRoom);
+      });
+
+    axios
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+          "currentRoom"
+        )}/`
+      )
+      .then(response => {
+        console.log("This is updated room response data:", response.data);
+        this.setState({
+          currentRoom: response.data.id,
+          title: response.data.title,
+          description: response.data.description,
+          n_to: response.data.n_to,
+          s_to: response.data.s_to,
+          e_to: response.data.e_to,
+          w_to: response.data.w_to
+        });
+      });
+      
+      console.log(
+      "This updated new current room state with information:",
+      this.state
+    );
+
+    console.log("This updated new current room state:", this.state);
+  };
+
+  // Get room information by currentRoom
+  updateCurrentRoom = e => {
+    axios
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+          "currentRoom"
+        )}/`
+      )
+      .then(response => {
+        console.log("This is updated room response data:", response.data);
+        this.setState({
+          currentRoom: response.data.id,
+          title: response.data.title,
+          description: response.data.description,
+          n_to: response.data.n_to,
+          s_to: response.data.s_to,
+          e_to: response.data.e_to,
+          w_to: response.data.w_to
+        });
+      });
+    console.log(
+      "This updated new current room state with information:",
+      this.state
+    );
+  };
+
   onClickGoNorth = e => {
-    e.preventDefault();
     console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.n_to === 0) {
       this.setState({ message: "There is no room to move to." });
     } else {
-      this.setState({ currentRoom: this.state.n_to });
+      axios
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "n" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
 
-      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"n"}, {
-        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
-      })
-      .then(
-        // Gets where player is and sets currentRoom for frontend --  //
-        axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
-          localStorage.setItem("currentRoom", response.data.currentRoom);
-          this.setState({ 
-            currentRoom: response.data.currentRoom,
-          });
-          console.log("This updated current room state:", this.state);
-        }))
-      .then(
-            // Get room information from localStorage --  //
-            axios
-            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
-            .then(response => {
-              this.setState({ 
-                title: response.data.title,
-                description: response.data.description,
-                n_to: response.data.n_to,
-                s_to: response.data.s_to,
-                e_to: response.data.e_to,
-                w_to: response.data.w_to
-              });
-              console.log("This updated current room state:", this.state);
-    })
-      )
-      .then( response => {
-        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
-        console.log("This is new North state", this.state);
-      })
+          this.getCurrentRoom();
+        })
+
+        // Get room information from localStorage --  //
+        // .then(response => {
+        //   this.updateCurrentRoom();
+        // })
     }
   };
 
@@ -209,26 +268,40 @@ class Dashboard extends Component {
     } else {
       this.setState({ currentRoom: this.state.s_to });
 
-      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"s"}, {
-        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
-      })
-      .then(
-        // Gets new room id and sets currentRoom --  //
-        axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
-        .then(response => {
-          localStorage.setItem("currentRoom", response.data.currentRoom);
-          this.setState({ 
-            currentRoom: response.data.currentRoom,
-          });
-          console.log("This updated current room state:", this.state);
-        }))
-      .then(
-            // Get room information from localStorage --  //
-            axios
-            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
+      axios
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "s" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
+        .then(
+          // Gets new room id and sets currentRoom --  //
+          axios
+            .get(
+              `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
+                "id"
+              )}/`
+            )
             .then(response => {
-              this.setState({ 
+              localStorage.setItem("currentRoom", response.data.currentRoom);
+              this.setState({
+                currentRoom: response.data.currentRoom
+              });
+              console.log("This updated current room state:", this.state);
+            })
+        )
+        .then(
+          // Get room information from localStorage --  //
+          axios
+            .get(
+              `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+                "currentRoom"
+              )}/`
+            )
+            .then(response => {
+              this.setState({
                 title: response.data.title,
                 description: response.data.description,
                 n_to: response.data.n_to,
@@ -237,12 +310,15 @@ class Dashboard extends Component {
                 w_to: response.data.w_to
               });
               console.log("This updated current room state:", this.state);
-    })
-      )
-      .then( response => {
-        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
-        console.log("This is new South state", this.state);
-      })
+            })
+        )
+        .then(response => {
+          console.log(
+            "Successfully updated current room!",
+            localStorage.getItem("currentRoom")
+          );
+          console.log("This is new South state", this.state);
+        });
     }
   };
 
@@ -255,40 +331,32 @@ class Dashboard extends Component {
     } else {
       this.setState({ currentRoom: this.state.e_to });
 
-      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"e"}, {
-        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
-      })
-      .then(
+      axios
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "e" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
+
         // Gets new room id and sets currentRoom --  //
-        axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
         .then(response => {
-          localStorage.setItem("currentRoom", response.data.currentRoom);
-          this.setState({ 
-            currentRoom: response.data.currentRoom,
-          });
-          console.log("This updated current room state:", this.state);
-        }))
-      .then(
-            // Get room information from localStorage --  //
-            axios
-            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
-            .then(response => {
-              this.setState({ 
-                title: response.data.title,
-                description: response.data.description,
-                n_to: response.data.n_to,
-                s_to: response.data.s_to,
-                e_to: response.data.e_to,
-                w_to: response.data.w_to
-              });
-              console.log("This updated current room state:", this.state);
-    })
-      )
-      .then( response => {
-        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
-        console.log("This is new East state", this.state);
-      })
+          this.getCurrentRoom();
+        })
+        .then(response => {
+          this.updateCurrentRoom();
+        })
+
+        // Get room information from localStorage --  //
+
+        .then(response => {
+          console.log(
+            "Successfully updated current room!",
+            localStorage.getItem("currentRoom")
+          );
+          console.log("This is new East state", this.state);
+        });
     }
   };
 
@@ -301,26 +369,40 @@ class Dashboard extends Component {
     } else {
       this.setState({ currentRoom: this.state.w_to });
 
-      axios.post("https://sonicthelambhog.herokuapp.com/api/adv/move/", {"direction":"w"}, {
-        headers:{ "Authorization": ("Token " + localStorage.getItem("Token"))}
-      })
-      .then(
-        // Gets new room id and sets currentRoom --  //
-        axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem("id")}/`)
-        .then(response => {
-          localStorage.setItem("currentRoom", response.data.currentRoom);
-          this.setState({ 
-            currentRoom: response.data.currentRoom,
-          });
-          console.log("This updated current room state:", this.state);
-        }))
-      .then(
-            // Get room information from localStorage --  //
-            axios
-            .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem("currentRoom")}/`)
+      axios
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "w" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
+        .then(
+          // Gets new room id and sets currentRoom --  //
+          axios
+            .get(
+              `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
+                "id"
+              )}/`
+            )
             .then(response => {
-              this.setState({ 
+              localStorage.setItem("currentRoom", response.data.currentRoom);
+              this.setState({
+                currentRoom: response.data.currentRoom
+              });
+              console.log("This updated current room state:", this.state);
+            })
+        )
+        .then(
+          // Get room information from localStorage --  //
+          axios
+            .get(
+              `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+                "currentRoom"
+              )}/`
+            )
+            .then(response => {
+              this.setState({
                 title: response.data.title,
                 description: response.data.description,
                 n_to: response.data.n_to,
@@ -329,12 +411,15 @@ class Dashboard extends Component {
                 w_to: response.data.w_to
               });
               console.log("This updated current room state:", this.state);
-    })
-      )
-      .then( response => {
-        console.log("Successfully updated current room!", localStorage.getItem("currentRoom"));
-        console.log("This is new West state", this.state);
-      })
+            })
+        )
+        .then(response => {
+          console.log(
+            "Successfully updated current room!",
+            localStorage.getItem("currentRoom")
+          );
+          console.log("This is new West state", this.state);
+        });
     }
   };
 
