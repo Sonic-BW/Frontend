@@ -252,6 +252,7 @@ export const CenterMapContainer = styled.div`
 
 // Right side container styling //
 export const RightContainer = styled.div`
+ @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -261,7 +262,9 @@ export const RightContainer = styled.div`
   margin: 0 auto;
   padding: 2rem;
   border: 5px solid navy;
-
+  h1 {
+    font-family: 'Bangers', cursive;
+  }
   @media (max-width: 700px) {
     width: 100%;
   }
@@ -275,8 +278,6 @@ export const InfoContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
-
   @media (max-width: 700px) {
     width: 100%;
   }
@@ -289,17 +290,20 @@ export const PlayerInfoContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  border: 1px solid red;
   width: 100%;
 `;
 
 // Room Info container styling//
 export const RoomInfoContainer = styled.div`
   display: flex;
+  @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  border: 1px solid red;
+  h2 {
+    font-family: 'Bangers', cursive;
+    color: red
+  }
   width: 100%;
 `;
 

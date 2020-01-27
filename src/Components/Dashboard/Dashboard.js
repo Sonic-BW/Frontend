@@ -383,13 +383,15 @@ class Dashboard extends Component {
               <InfoContainer>
                 <RoomInfoContainer>
                   <H1>Room Stats:</H1>
-                  <P>You are currently in:</P>
+                  <h2>You are currently in:</h2>
                   <P>{this.state.title}</P>
-                  <P>Description:</P>
+                  <h2>Description:</h2>
                   <P>{this.state.description}</P>
-                  <P>Players in room:</P>
+                  <h2>Players in room:</h2>
                   {this.state.players.length === 0 && <P>You're all alone.</P>}
-                  {this.state.players.length > 0 && <P>{this.state.players}</P>}
+                  {this.state.players.length > 0 && <P>{this.state.players.map(p => (
+                    <p>{p}</p>
+                    ))}</P>}
                 </RoomInfoContainer>
 
                 <PlayerInfoContainer>
