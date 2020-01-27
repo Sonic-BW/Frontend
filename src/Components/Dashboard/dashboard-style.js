@@ -112,17 +112,18 @@ export const FormGroup = styled.form`
 
 // Split container styling //
 export const SplitContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-content: space-around;
+  align-content: space-evenly;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
+  border: 5px solid green;
 
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
 `;
 /////////////////////////////////////////////
 
@@ -130,18 +131,34 @@ export const SplitContainer = styled.div`
 export const MapContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   align-content: space-around;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
+  border: 5px solid pink;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// Whole Map container styling //
+export const RowContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-evenly;
+  align-items: center;
   border: 5px solid grey;
 
   // @media (max-width: 700px) {
   //   width: 100%;
   // }
 `;
+
 
 // Dummy Map container styling //
 export const DummyMapContainer = styled.div`
