@@ -346,7 +346,7 @@ export const MovementContainer = styled.div`
   margin: 0 auto;
   justify-content: center;
   // align-items: center;
-  border: 1px solid red;
+ 
   width: 100%;
 `;
 
