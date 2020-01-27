@@ -66,7 +66,11 @@ class Dashboard extends Component {
     e_to: "",
     w_to: "",
     message: null,
-    players: []
+    players: [],
+    move_n: true,
+    move_s: false,
+    move_e: false,
+    move_w: false
   };
 
   toggleVisibility = () =>
@@ -257,6 +261,12 @@ class Dashboard extends Component {
       this.setState({ message: true });
     } else {
       this.setState({ message: false });
+      this.setState({
+        move_n: true,
+        move_s: false,
+        move_e: false,
+        move_w: false
+      });
       axios
         .post(
           "https://sonicthelambhog.herokuapp.com/api/adv/move/",
@@ -282,6 +292,12 @@ class Dashboard extends Component {
       this.setState({ message: true });
     } else {
       this.setState({ message: false });
+      this.setState({
+        move_n: false,
+        move_s: true,
+        move_e: false,
+        move_w: false
+      });
       this.setState({ currentRoom: this.state.s_to });
 
       axios
@@ -309,6 +325,12 @@ class Dashboard extends Component {
       this.setState({ message: true });
     } else {
       this.setState({ message: false });
+      this.setState({
+        move_n: false,
+        move_s: false,
+        move_e: true,
+        move_w: false
+      });
       this.setState({ currentRoom: this.state.e_to });
 
       axios
@@ -336,6 +358,12 @@ class Dashboard extends Component {
       this.setState({ message: true });
     } else {
       this.setState({ message: false });
+      this.setState({
+        move_n: false,
+        move_s: false,
+        move_e: false,
+        move_w: true
+      });
       this.setState({ currentRoom: this.state.w_to });
 
       axios
@@ -372,7 +400,7 @@ class Dashboard extends Component {
                   <DummyMapContainer>
                     <Image
                       // onClick={this.toggleVisibility}
-                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
                       as="a"
                       size="small"
                       id="dummyImage"
@@ -383,7 +411,7 @@ class Dashboard extends Component {
                     {this.state.n_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_north.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -403,7 +431,7 @@ class Dashboard extends Component {
                   <DummyMapContainer>
                     <Image
                       // onClick={this.toggleVisibility}
-                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
                       as="a"
                       size="small"
                       id="dummyImage"
@@ -416,7 +444,7 @@ class Dashboard extends Component {
                     {this.state.w_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_west.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -434,20 +462,52 @@ class Dashboard extends Component {
                   </WestMapContainer>
 
                   <CenterMapContainer>
-                    <Image
-                      // onClick={this.toggleVisibility}
-                      src="https://www.imageupload.net/upload-image/2020/01/27/IMGBIN_sonic-the-hedgehog-sonic-dash-2-sonic-boom-sega-sonic-head-png_v0qVEtAh.png"
-                      as="a"
-                      size="small"
-                      id="centerImage"
-                    />
+                    {this.state.move_n === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/New-north.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+
+                    {this.state.move_s === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/south.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+
+                    {this.state.move_e === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/east.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+
+                    {this.state.move_w === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/west.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
                   </CenterMapContainer>
 
                   <EastMapContainer>
                     {this.state.e_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_east.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -469,7 +529,7 @@ class Dashboard extends Component {
                   <DummyMapContainer>
                     <Image
                       // onClick={this.toggleVisibility}
-                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
                       as="a"
                       size="small"
                       id="dummyImage"
@@ -480,7 +540,7 @@ class Dashboard extends Component {
                     {this.state.s_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_south.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -500,7 +560,7 @@ class Dashboard extends Component {
                   <DummyMapContainer>
                     <Image
                       // onClick={this.toggleVisibility}
-                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
                       as="a"
                       size="small"
                       id="dummyImage"

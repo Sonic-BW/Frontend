@@ -112,14 +112,17 @@ export const FormGroup = styled.form`
 
 // Split container styling //
 export const SplitContainer = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
-  align-content: space-evenly;
+  justify-content: center;
+  align-content: space-around;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
   border: 5px solid green;
+  background-color: black;
+  // background-image: url("https://www.imageupload.net/upload-image/2020/01/27/grass.png");
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -152,7 +155,7 @@ export const RowContainer = styled.div`
 
   align-content: space-evenly;
   align-items: center;
-  border: 5px solid grey;
+  // border: 5px solid grey;
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -167,10 +170,11 @@ export const DummyMapContainer = styled.div`
   flex-direction: row;
 
   align-content: space-around;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid brown;
+  // border: 5px solid brown;
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -184,10 +188,11 @@ export const NorthMapContainer = styled.div`
   flex-direction: row;
 
   align-content: space-around;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid green;
+  // border: 5px solid green;
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -201,10 +206,11 @@ export const SouthMapContainer = styled.div`
   flex-direction: row;
 
   align-content: space-around;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid green;
+  // border: 5px solid green;
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -218,10 +224,11 @@ export const WestMapContainer = styled.div`
   flex-direction: row;
 
   align-content: space-around;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid green;
+  // border: 5px solid green;
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -234,11 +241,12 @@ export const EastMapContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  align-content: space-around;
+  align-items: space-around;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid green;
+  // border: 5px solid green;
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -247,15 +255,17 @@ export const EastMapContainer = styled.div`
 
 // Center Map container styling //
 export const CenterMapContainer = styled.div`
-  width: 30%;
+  width: 25%;
   display: flex;
   flex-direction: row;
 
   align-content: space-around;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid green;
+  animation: 2s ${fadeInUpAnimation};
+  // border: 5px solid green;
 
   // @media (max-width: 700px) {
   //   width: 100%;
@@ -278,7 +288,7 @@ export const RightContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
+  border: 5px solid purple;
   h1 {
     font-family: 'Bangers', cursive;
   }
