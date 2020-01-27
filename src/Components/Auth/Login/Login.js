@@ -40,15 +40,13 @@ class Login extends Component {
         .post("https://sonicthelambhog.herokuapp.com/api/login/", credentials)
         .then(res => {
           console.log(res.data)
-          localStorage.setItem("key", res.data.key);
-          localStorage.setItem("id", res.data.id);
-          localStorage.setItem("username", res.data.name);
+          localStorage.setItem("Token", res.data.key);
+
           this.setState({
             username: "",
             password: "",
-            id: ""
           });
-          this.props.history.push(`/dashboard`, credentials);
+          this.props.history.push(`/dashboard`);
         });
     }
   };

@@ -6,6 +6,13 @@ import {
   PageDiv,
   SplitContainer,
   MapContainer,
+  RowContainer,
+  NorthMapContainer,
+  SouthMapContainer,
+  WestMapContainer,
+  EastMapContainer,
+  CenterMapContainer,
+  DummyMapContainer,
   RightContainer,
   InfoContainer,
   PlayerInfoContainer,
@@ -17,10 +24,34 @@ import {
   P,
   H1
 } from "./dashboard-style";
-import { Image, Button, Form, Icon, Container } from "semantic-ui-react";
+import {
+  Image,
+  Message,
+  Button,
+  Transition,
+  Icon,
+  Container
+} from "semantic-ui-react";
+
+const transitions = [
+  "jiggle",
+  "flash",
+  "shake",
+  "pulse",
+  "tada",
+  "bounce",
+  "glow"
+];
+
+const options = transitions.map(name => ({
+  key: name,
+  text: name,
+  value: name
+}));
 
 class Dashboard extends Component {
   state = {
+    visible: true,
     id: "",
     username: "",
     user: "",
@@ -34,34 +65,74 @@ class Dashboard extends Component {
     s_to: "",
     e_to: "",
     w_to: "",
-    message: ""
+    message: null,
+    players: [],
+    move_n: true,
+    move_s: false,
+    move_e: false,
+    move_w: false
+  };
+
+  toggleVisibility = () =>
+    this.setState(prevState => ({ visible: !prevState.visible }));
+
+  updatePlayer = e => {
+    // Gets id, username and
+    axios
+      .get("https://sonicthelambhog.herokuapp.com/api/adv/init", {
+        headers: { Authorization: "Token " + localStorage.getItem("Token") }
+      })
+      .then(res => {
+        console.log("This is localStorage:", res.data);
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("username", res.data.name);
+        localStorage.setItem("currentRoom", res.data.currentRoom);
+
+        this.setState({
+          id: res.data.id,
+          username: res.data.name,
+          currentRoom: res.data.currentRoom,
+          players: res.data.players
+        });
+      });
   };
 
   componentDidMount() {
+    // Gets id, username and
+    this.updatePlayer();
+
     console.log("This is username:", this.state.username);
     console.log("This is password:", this.state.password);
     console.log("This is id:", this.state.id);
 
     axios
-    .get(`https://sonicthelambhog.herokuapp.com/api/users/${this.state.id}/`)
-    .then(response => {
-      this.setState({ 
-        id: response.data.id,
-        username: response.data.username
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem(
+          "id"
+        )}/`
+      )
+      .then(response => {
+        this.setState({
+          id: response.data.id,
+          username: response.data.username
+        });
+        console.log(response.data);
+        console.log("This is updated user state:", this.state);
+      })
+      .catch(error => {
+        console.log(error);
       });
-      console.log(response.data);
-      console.log("This is updated user state:", this.state);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-    
+
     // Gets user data -- id, username//
 
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/users/${this.state.id}/`)
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/users/${localStorage.getItem(
+          "id"
+        )}/`
+      )
       .then(response => {
-        this.setState({ 
+        this.setState({
           id: response.data.id,
           username: response.data.username
         });
@@ -74,7 +145,11 @@ class Dashboard extends Component {
 
     // Gets player data -- user, uuid, currentRoom //
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/players/${this.state.id}/`)
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
+          "id"
+        )}/`
+      )
       .then(response => {
         this.setState({
           user: response.data.user,
@@ -89,12 +164,20 @@ class Dashboard extends Component {
 
     // Gets current room data --  //
     axios
-      .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${this.state.currentRoom}/`)
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+          "currentRoom"
+        )}/`
+      )
       .then(response => {
-        this.setState({ 
+        this.setState({
           currentRoom: response.data.id,
           title: response.data.title,
           description: response.data.description,
+          n_to: response.data.n_to,
+          s_to: response.data.s_to,
+          e_to: response.data.e_to,
+          w_to: response.data.w_to
         });
         console.log("This updated current room state:", this.state);
       })
@@ -111,94 +194,198 @@ class Dashboard extends Component {
 
   // }
 
-
-
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
+  // Get current room of player by id
+  getCurrentRoom = e => {
+    axios
+      .get(
+        `https://sonicthelambhog.herokuapp.com/api/players/${localStorage.getItem(
+          "id"
+        )}/`
+      )
+      .then(response => {
+        console.log("This is response data:", response.data);
+        this.setState({ currentRoom: response.data.currentRoom });
+        localStorage.setItem("currentRoom", response.data.currentRoom);
+      })
+      .then(response => {
+        axios
+          .get(
+            `https://sonicthelambhog.herokuapp.com/api/rooms/${localStorage.getItem(
+              "currentRoom"
+            )}/`
+          )
+          .then(response => {
+            console.log("This is updated room response data:", response.data);
+            this.setState({
+              currentRoom: response.data.id,
+              title: response.data.title,
+              description: response.data.description,
+              n_to: response.data.n_to,
+              s_to: response.data.s_to,
+              e_to: response.data.e_to,
+              w_to: response.data.w_to
+            });
+          });
+      })
+      .then(response => {
+        // Gets id, username and
+        axios
+          .get("https://sonicthelambhog.herokuapp.com/api/adv/init", {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          })
+          .then(res => {
+            this.setState({
+              players: res.data.players
+            });
+          });
+      });
+
+    console.log(
+      "This updated new current room state with information:",
+      this.state
+    );
+
+    console.log("This updated new current room state:", this.state);
+  };
+
   onClickGoNorth = e => {
-    e.preventDefault();
     console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.n_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
-      this.setState({ currentRoom: this.state.n_to });
-
-      axios.put(`https://sonicthelambhog.herokuapp.com/api/players/${this.state.id}/currentRoom/, ${this.state.currentRoom}/`)
-      .then( response => {
-        console.log("Successfully updated current room!", this.state.currentRoom);
-        console.log("This is new North state", this.state);
-      })
-
+      this.setState({ message: false });
+      this.setState({
+        move_n: true,
+        move_s: false,
+        move_e: false,
+        move_w: false
+      });
       axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/${this.state.currentRoom}/`)
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "n" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
+
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved north." });
-          console.log("This is new North state", this.state);
+          this.getCurrentRoom();
         });
     }
   };
 
   onClickGoSouth = e => {
     e.preventDefault();
+    console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.s_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
+      this.setState({ message: false });
+      this.setState({
+        move_n: false,
+        move_s: true,
+        move_e: false,
+        move_w: false
+      });
       this.setState({ currentRoom: this.state.s_to });
 
       axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/742/`)
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "s" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
+
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved south." });
-          console.log("This is new South state", this.state);
+          this.getCurrentRoom();
         });
     }
   };
 
   onClickGoEast = e => {
     e.preventDefault();
+    console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.e_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
+      this.setState({ message: false });
+      this.setState({
+        move_n: false,
+        move_s: false,
+        move_e: true,
+        move_w: false
+      });
       this.setState({ currentRoom: this.state.e_to });
 
       axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/742/`)
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "e" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
+
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved east." });
-          console.log("This is new East state", this.state);
+          this.getCurrentRoom();
         });
     }
   };
 
   onClickGoWest = e => {
     e.preventDefault();
+    console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.w_to === 0) {
-      this.setState({ message: "There is no room to move to." });
+      this.setState({ message: true });
     } else {
+      this.setState({ message: false });
+      this.setState({
+        move_n: false,
+        move_s: false,
+        move_e: false,
+        move_w: true
+      });
       this.setState({ currentRoom: this.state.w_to });
 
       axios
-        .get(`https://sonicthelambhog.herokuapp.com/api/rooms/742/`)
+        .post(
+          "https://sonicthelambhog.herokuapp.com/api/adv/move/",
+          { direction: "w" },
+          {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          }
+        )
+
+        // Get where player is and sets/update currentRoom for frontend --  //
+
         .then(response => {
-          this.setState({ ...this.state, ...response.data });
-          this.setState({ message: "You moved west." });
-          console.log("This is new West state", this.state);
+          this.getCurrentRoom();
         });
     }
   };
 
   render() {
+    const { visible } = this.state;
+
     return (
       <div className="dashboardComponent">
         <PageDiv className="main">
@@ -206,34 +393,227 @@ class Dashboard extends Component {
           <H1>Dashboard</H1>
 
           <SplitContainer>
-            <MapContainer>
+            <div>
               <H1>Map:</H1>
-              <Image
-                // onClick={this.toggleVisibility}
-                src="https://www.imageupload.net/upload-image/2020/01/26/4-1024x655.jpg"
-                as="a"
-                size="large"
-                // href="/login"
-                id="mapImage"
-              />
-            </MapContainer>
+              <MapContainer>
+                <RowContainer>
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
+
+                  <NorthMapContainer>
+                    {this.state.n_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_north.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.n_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-vertical.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </NorthMapContainer>
+
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
+                </RowContainer>
+
+                <RowContainer>
+                  <WestMapContainer>
+                    {this.state.w_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_west.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.w_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-horizontal.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </WestMapContainer>
+
+                  <CenterMapContainer>
+                    {this.state.move_n === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/New-north.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+
+                    {this.state.move_s === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/south.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+
+                    {this.state.move_e === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/east.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+
+                    {this.state.move_w === true && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/west.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </CenterMapContainer>
+
+                  <EastMapContainer>
+                    {this.state.e_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_east.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.e_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-horizontal.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </EastMapContainer>
+                </RowContainer>
+
+                <RowContainer>
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
+
+                  <SouthMapContainer>
+                    {this.state.s_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_south.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.s_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-vertical.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </SouthMapContainer>
+
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/ring-edited.gif"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
+                </RowContainer>
+              </MapContainer>
+            </div>
 
             <RightContainer>
               <InfoContainer>
                 <RoomInfoContainer>
                   <H1>Room Stats:</H1>
-                  <P>You are in room (currentRoom):</P>
-                  <P>{this.state.currentRoom}</P>
-                  <P>You are currently in (Title):</P>
+                  <h2>You are currently in:</h2>
                   <P>{this.state.title}</P>
-                  <P>Description:</P>
+                  <h2>Description:</h2>
                   <P>{this.state.description}</P>
+                  <h2>Players in room:</h2>
+                  {this.state.players.length === 0 && <P>You're all alone.</P>}
+                  {this.state.players.length > 0 && (
+                    <P>
+                      {this.state.players.map(p => (
+                        <p>{p}</p>
+                      ))}
+                    </P>
+                  )}
                 </RoomInfoContainer>
 
                 <PlayerInfoContainer>
                   <H1>Players Stats:</H1>
                   <P>Username: {this.state.username}</P>
-                  <P>Message: {this.state.message}</P>
+
+                  {this.state.message === true && (
+                    <Transition
+                      visible={visible}
+                      animation="flash"
+                      duration={600}
+                    >
+                      <Message
+                        color="red"
+                        header="There is no room to move to."
+                      />
+                    </Transition>
+                  )}
+                  {this.state.message === false && (
+                    <Transition
+                      visible={visible}
+                      animation="flash"
+                      duration={600}
+                    >
+                      <Message color="green" header="Moving to next room." />
+                    </Transition>
+                  )}
                 </PlayerInfoContainer>
               </InfoContainer>
 
@@ -246,10 +626,10 @@ class Dashboard extends Component {
                   <Button className="southButton" onClick={this.onClickGoSouth}>
                     <Icon name="angle double down"></Icon>
                   </Button>
-                  <Button className="westButton" onClick={this.onClickGoEast}>
+                  <Button className="westButton" onClick={this.onClickGoWest}>
                     <Icon name="angle double left"></Icon>
                   </Button>
-                  <Button className="eastButton" onClick={this.onClickGoWest}>
+                  <Button className="eastButton" onClick={this.onClickGoEast}>
                     <Icon name="angle double right"></Icon>
                   </Button>
                 </MovementContainer>

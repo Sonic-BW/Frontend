@@ -49,7 +49,7 @@ class Registration extends Component {
             password1: "",
             password2: ""
           });
-          this.props.history.push(`/dashboard`);
+          this.props.history.push(`/login`);
         });
     }
   };

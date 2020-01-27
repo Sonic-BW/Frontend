@@ -112,39 +112,174 @@ export const FormGroup = styled.form`
 
 // Split container styling //
 export const SplitContainer = styled.div`
+  width: 80%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-content: space-around;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
+  border: 5px solid green;
+  background-color: black;
+  // background-image: url("https://www.imageupload.net/upload-image/2020/01/27/grass.png");
 
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
 `;
+/////////////////////////////////////////////
 
-
-// Map container styling //
+// Whole Map container styling //
 export const MapContainer = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  background-image: url("https://www.imageupload.net/upload-image/2020/01/27/grass.png");
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid pink;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// Whole Map container styling //
+export const RowContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-evenly;
+  align-items: center;
+  // border: 5px solid grey;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+
+// Dummy Map container styling //
+export const DummyMapContainer = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
 
   align-content: space-around;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
+  // border: 5px solid brown;
 
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
 `;
+
+// North Map container styling //
+export const NorthMapContainer = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  // border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// South Map container styling //
+export const SouthMapContainer = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  // border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// West Map container styling //
+export const WestMapContainer = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  // border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// East Map container styling //
+export const EastMapContainer = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+
+  align-items: space-around;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  // border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// Center Map container styling //
+export const CenterMapContainer = styled.div`
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: 2s ${fadeInUpAnimation};
+  // border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+
+
+
+//////////////////////////////////////////////////
 
 // Right side container styling //
 export const RightContainer = styled.div`
+ @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -153,8 +288,10 @@ export const RightContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
-
+  border: 5px solid purple;
+  h1 {
+    font-family: 'Bangers', cursive;
+  }
   @media (max-width: 700px) {
     width: 100%;
   }
@@ -168,8 +305,6 @@ export const InfoContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
-
   @media (max-width: 700px) {
     width: 100%;
   }
@@ -182,17 +317,20 @@ export const PlayerInfoContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  border: 1px solid red;
   width: 100%;
 `;
 
 // Room Info container styling//
 export const RoomInfoContainer = styled.div`
   display: flex;
+  @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  border: 1px solid red;
+  h2 {
+    font-family: 'Bangers', cursive;
+    color: red
+  }
   width: 100%;
 `;
 
@@ -218,7 +356,7 @@ export const MovementContainer = styled.div`
   margin: 0 auto;
   justify-content: center;
   // align-items: center;
-  border: 1px solid red;
+ 
   width: 100%;
 `;
 
