@@ -20,15 +20,14 @@ class Navbar extends React.Component {
           src="https://www.imageupload.net/upload-image/2020/01/18/lambdog.gif"
           as="a"
           size="tiny"
-          // href="/login"
           id="leftNavImage"
         />
 
         <ButtonLink
           as={Link}
-          className="registerButton"
-          name="login"
-          to="/login"
+          // className="registerButton"
+          name="about"
+          to="/about"
         >
           SONIC THE LAMBDOG
         </ButtonLink>
