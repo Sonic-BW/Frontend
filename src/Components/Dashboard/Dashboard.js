@@ -13,6 +13,7 @@ import {
   EastMapContainer,
   CenterMapContainer,
   DummyMapContainer,
+  LeftContainer,
   RightContainer,
   InfoContainer,
   PlayerInfoContainer,
@@ -22,7 +23,9 @@ import {
   Input,
   Label,
   P,
-  H1
+  H1,
+  H2,
+  H3
 } from "./dashboard-style";
 import {
   Image,
@@ -83,7 +86,7 @@ class Dashboard extends Component {
         headers: { Authorization: "Token " + localStorage.getItem("Token") }
       })
       .then(res => {
-        console.log("This is localStorage:", res.data);
+        // console.log("This is localStorage:", res.data);
         localStorage.setItem("id", res.data.id);
         localStorage.setItem("username", res.data.name);
         localStorage.setItem("currentRoom", res.data.currentRoom);
@@ -101,9 +104,9 @@ class Dashboard extends Component {
     // Gets id, username and
     this.updatePlayer();
 
-    console.log("This is username:", this.state.username);
-    console.log("This is password:", this.state.password);
-    console.log("This is id:", this.state.id);
+    // console.log("This is username:", this.state.username);
+    // console.log("This is password:", this.state.password);
+    // console.log("This is id:", this.state.id);
 
     axios
       .get(
@@ -116,8 +119,8 @@ class Dashboard extends Component {
           id: response.data.id,
           username: response.data.username
         });
-        console.log(response.data);
-        console.log("This is updated user state:", this.state);
+        // console.log(response.data);
+        // console.log("This is updated user state:", this.state);
       })
       .catch(error => {
         console.log(error);
@@ -136,8 +139,8 @@ class Dashboard extends Component {
           id: response.data.id,
           username: response.data.username
         });
-        console.log(response.data);
-        console.log("This is updated user state:", this.state);
+        // console.log(response.data);
+        // console.log("This is updated user state:", this.state);
       })
       .catch(error => {
         console.log(error);
@@ -156,7 +159,7 @@ class Dashboard extends Component {
           uuid: response.data.uuid,
           currentRoom: response.data.currentRoom
         });
-        console.log("This is updated player state:", this.state);
+        // console.log("This is updated player state:", this.state);
       })
       .catch(error => {
         console.log(error);
@@ -179,7 +182,7 @@ class Dashboard extends Component {
           e_to: response.data.e_to,
           w_to: response.data.w_to
         });
-        console.log("This updated current room state:", this.state);
+        // console.log("This updated current room state:", this.state);
       })
       .catch(error => {
         console.log(error);
@@ -209,7 +212,7 @@ class Dashboard extends Component {
         )}/`
       )
       .then(response => {
-        console.log("This is response data:", response.data);
+        // console.log("This is response data:", response.data);
         this.setState({ currentRoom: response.data.currentRoom });
         localStorage.setItem("currentRoom", response.data.currentRoom);
       })
@@ -221,7 +224,7 @@ class Dashboard extends Component {
             )}/`
           )
           .then(response => {
-            console.log("This is updated room response data:", response.data);
+            // console.log("This is updated room response data:", response.data);
             this.setState({
               currentRoom: response.data.id,
               title: response.data.title,
@@ -246,16 +249,16 @@ class Dashboard extends Component {
           });
       });
 
-    console.log(
-      "This updated new current room state with information:",
-      this.state
-    );
+    // console.log(
+    //   "This updated new current room state with information:",
+    //   this.state
+    // );
 
-    console.log("This updated new current room state:", this.state);
+    // console.log("This updated new current room state:", this.state);
   };
 
   onClickGoNorth = e => {
-    console.log("Old current room!", this.state.currentRoom);
+    // console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.n_to === 0) {
       this.setState({ message: true });
@@ -286,7 +289,7 @@ class Dashboard extends Component {
 
   onClickGoSouth = e => {
     e.preventDefault();
-    console.log("Old current room!", this.state.currentRoom);
+    // console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.s_to === 0) {
       this.setState({ message: true });
@@ -319,7 +322,7 @@ class Dashboard extends Component {
 
   onClickGoEast = e => {
     e.preventDefault();
-    console.log("Old current room!", this.state.currentRoom);
+    // console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.e_to === 0) {
       this.setState({ message: true });
@@ -352,7 +355,7 @@ class Dashboard extends Component {
 
   onClickGoWest = e => {
     e.preventDefault();
-    console.log("Old current room!", this.state.currentRoom);
+    // console.log("Old current room!", this.state.currentRoom);
 
     if (this.state.w_to === 0) {
       this.setState({ message: true });
@@ -393,8 +396,8 @@ class Dashboard extends Component {
           <H1>Dashboard</H1>
 
           <SplitContainer>
-            <div>
-              <H1>Map:</H1>
+            <LeftContainer>
+              <H3>Map:</H3>
               <MapContainer>
                 <RowContainer>
                   <DummyMapContainer>
@@ -568,12 +571,12 @@ class Dashboard extends Component {
                   </DummyMapContainer>
                 </RowContainer>
               </MapContainer>
-            </div>
+            </LeftContainer>
 
             <RightContainer>
               <InfoContainer>
                 <RoomInfoContainer>
-                  <H1>Room Stats:</H1>
+                  <H2>Room Stats:</H2>
                   <h2>You are currently in:</h2>
                   <P>{this.state.title}</P>
                   <h2>Description:</h2>
@@ -618,7 +621,7 @@ class Dashboard extends Component {
               </InfoContainer>
 
               <MovementHeaderContainer>
-                <H1>Player Movement Controls:</H1>
+                <H2>Player Movement Controls:</H2>
                 <MovementContainer>
                   <Button className="northButton" onClick={this.onClickGoNorth}>
                     <Icon name="angle double up"></Icon>

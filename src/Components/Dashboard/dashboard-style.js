@@ -29,68 +29,16 @@ const LightSpeedInDiv = styled.div`
 // PageDiv Styling //
 export const PageDiv = styled.div`
   //   background: #00FFAB;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
-  //aqua green background----//
-
-  //   background: radial-gradient(
-  //         1.5em 6.28571em at 1.95em,
-  //         rgba(255, 255, 255, 0) 50%,
-  //         rgba(255, 255, 255, 0.25) 50%,
-  //         rgba(255, 255, 255, 0.25) 55%,
-  //         rgba(255, 255, 255, 0) 55%
-  //       )
-  //       0 0,
-  //     radial-gradient(
-  //         1.5em 6.28571em at -0.45em,
-  //         rgba(255, 255, 255, 0) 50%,
-  //         rgba(255, 255, 255, 0.25) 50%,
-  //         rgba(255, 255, 255, 0.25) 55%,
-  //         rgba(255, 255, 255, 0) 55%
-  //       )
-  //       1.5em 5.5em,
-  //     radial-gradient(
-  //         2.3em 4.57143em at 2.99em,
-  //         rgba(255, 255, 255, 0) 50%,
-  //         rgba(255, 255, 255, 0.3) 50%,
-  //         rgba(255, 255, 255, 0.3) 55%,
-  //         rgba(255, 255, 255, 0) 55%
-  //       )
-  //       0 0,
-  //     radial-gradient(
-  //         2.3em 4.57143em at -0.69em,
-  //         rgba(255, 255, 255, 0) 50%,
-  //         rgba(255, 255, 255, 0.3) 50%,
-  //         rgba(255, 255, 255, 0.3) 55%,
-  //         rgba(255, 255, 255, 0) 55%
-  //       )
-  //       2.3em 4em,
-  //     radial-gradient(
-  //         3.5em 6.28571em at 4.55em,
-  //         rgba(255, 255, 255, 0) 50%,
-  //         rgba(255, 255, 255, 0.25) 50%,
-  //         rgba(255, 255, 255, 0.25) 55%,
-  //         rgba(255, 255, 255, 0) 55%
-  //       )
-  //       0 0,
-  //     radial-gradient(
-  //         3.5em 6.28571em at -1.05em,
-  //         rgba(255, 255, 255, 0) 50%,
-  //         rgba(255, 255, 255, 0.25) 50%,
-  //         rgba(255, 255, 255, 0.25) 55%,
-  //         rgba(255, 255, 255, 0) 55%
-  //       )
-  //       3.5em 5.5em,
-  //     radial-gradient(#15ffa5, #00ced1);
-  //   background-color: mediumspringgreen;
-  //   background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em,
-  //     3.5em 11em, 100% 100%;
-  //   background-repeat: repeat;
 
   //blue background
   background: radial-gradient(ellipse at bottom, #5091dd 0%, #030617 100%);
 
   min-width: 85%;
-  min-height: 85%;
+  min-height: 40%;
   padding-bottom: 50px;
   background-position: center center;
   background-attachment: fixed;
@@ -115,10 +63,10 @@ export const SplitContainer = styled.div`
   width: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-content: space-around;
-  align-items: center;
-  margin: 0 auto;
+  justify-content: space-around;
+  align-content: center;
+  align-items: stretch;
+  margin: auto;
   padding: 2rem;
   border: 5px solid green;
   background-color: black;
@@ -128,18 +76,19 @@ export const SplitContainer = styled.div`
   //   width: 100%;
   // }
 `;
-/////////////////////////////////////////////
+
+//-------------Map Styling------------------//
 
 // Whole Map container styling //
 export const MapContainer = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-content: space-around;
   align-items: center;
   background-image: url("https://www.imageupload.net/upload-image/2020/01/27/grass.png");
-  margin: 0 auto;
-  padding: 2rem;
+  margin: auto;
+  padding: 1rem;
   border: 5px solid pink;
 
   // @media (max-width: 700px) {
@@ -147,7 +96,7 @@ export const MapContainer = styled.div`
   // }
 `;
 
-// Whole Map container styling //
+// Whole Map Row container styling //
 export const RowContainer = styled.div`
   width: 100%;
   display: flex;
@@ -172,7 +121,7 @@ export const DummyMapContainer = styled.div`
   align-content: space-around;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   // border: 5px solid brown;
 
@@ -190,7 +139,7 @@ export const NorthMapContainer = styled.div`
   align-content: space-around;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   // border: 5px solid green;
 
@@ -208,7 +157,7 @@ export const SouthMapContainer = styled.div`
   align-content: space-around;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   // border: 5px solid green;
 
@@ -226,7 +175,7 @@ export const WestMapContainer = styled.div`
   align-content: space-around;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   // border: 5px solid green;
 
@@ -244,7 +193,7 @@ export const EastMapContainer = styled.div`
   align-items: space-around;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   // border: 5px solid green;
 
@@ -262,7 +211,7 @@ export const CenterMapContainer = styled.div`
   align-content: space-around;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   animation: 2s ${fadeInUpAnimation};
   // border: 5px solid green;
@@ -272,29 +221,43 @@ export const CenterMapContainer = styled.div`
   // }
 `;
 
-
-
-
 //////////////////////////////////////////////////
 
-// Right side container styling //
-export const RightContainer = styled.div`
- @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
-  width: 50%;
+// Left side container styling //
+export const LeftContainer = styled.div`
+  width: 40%;
   display: flex;
   flex-direction: column;
-
-  align-content: space-around;
+  // align-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: auto;
+  padding: 1rem;
   border: 5px solid purple;
   h1 {
     font-family: 'Bangers', cursive;
   }
-  @media (max-width: 700px) {
-    width: 100%;
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+
+// Right side container styling //
+export const RightContainer = styled.div`
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  // align-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding: 1rem;
+  border: 5px solid purple;
+  h1 {
+    font-family: 'Bangers', cursive;
   }
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
 `;
 
 // Information container styling //
@@ -303,11 +266,11 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   align-content: space-around;
   align-items: center;
-  margin: 0 auto;
-  padding: 2rem;
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+  margin: auto;
+  padding: 1rem;
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
 `;
 
 
@@ -315,7 +278,7 @@ export const InfoContainer = styled.div`
 export const PlayerInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: auto;
   align-items: center;
   width: 100%;
 `;
@@ -325,7 +288,7 @@ export const RoomInfoContainer = styled.div`
   display: flex;
   @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
   flex-direction: column;
-  margin: 0 auto;
+  margin: auto;
   align-items: center;
   h2 {
     font-family: 'Bangers', cursive;
@@ -338,10 +301,10 @@ export const RoomInfoContainer = styled.div`
 export const MovementHeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-content: space-around;
+  justify-content: space-around;
   align-items: center;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: auto;
+  padding: 1rem;
   border: 5px solid navy;
 
   @media (max-width: 700px) {
@@ -353,10 +316,9 @@ export const MovementHeaderContainer = styled.div`
 export const MovementContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
+  margin: 20px auto 10px auto;
   justify-content: center;
-  // align-items: center;
- 
+  align-items: center;
   width: 100%;
 `;
 
@@ -404,7 +366,31 @@ export const H1 = styled.h1`
   margin: 0 auto;
   // margin-left: 25px;
   padding-top: 50px;
+  padding-bottom: 20px;
   animation: 2s ${lightSpeedInAnimation};
+`;
+
+// h2 styling //
+export const H2 = styled.h1`
+  text-align: center;
+  text-size: 20px;
+  color: #fff29c;
+  margin: 0 auto;
+  // margin-left: 25px;
+  // padding-top: 50px;
+  animation: 2s ${lightSpeedInAnimation};
+`;
+
+// h3 styling //
+export const H3 = styled.h1`
+text-align: center;
+text-size: 20px;
+color: #fff29c;
+margin: 0 auto;
+// margin-left: 25px;
+// padding-top: 50px;
+padding-bottom: 20px;
+animation: 2s ${lightSpeedInAnimation};
 `;
 
 // P styling//
