@@ -124,24 +124,114 @@ export const SplitContainer = styled.div`
     width: 100%;
   }
 `;
-
+/////////////////////////////////////////////
 
 // Map container styling //
 export const MapContainer = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   align-content: space-around;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
-  border: 5px solid navy;
+  border: 5px solid grey;
 
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
 `;
+
+// Map container styling //
+export const DummyMapContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid brown;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// Map container styling //
+export const SouthMapContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// Map container styling //
+export const WestMapContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// Map container styling //
+export const EastMapContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// Map container styling //
+export const CenterMapContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+
+
+
+//////////////////////////////////////////////////
 
 // Right side container styling //
 export const RightContainer = styled.div`
