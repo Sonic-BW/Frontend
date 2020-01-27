@@ -126,7 +126,7 @@ export const SplitContainer = styled.div`
 `;
 /////////////////////////////////////////////
 
-// Map container styling //
+// Whole Map container styling //
 export const MapContainer = styled.div`
   width: 100%;
   display: flex;
@@ -143,9 +143,9 @@ export const MapContainer = styled.div`
   // }
 `;
 
-// Map container styling //
+// Dummy Map container styling //
 export const DummyMapContainer = styled.div`
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: row;
 
@@ -160,9 +160,26 @@ export const DummyMapContainer = styled.div`
   // }
 `;
 
-// Map container styling //
+// North Map container styling //
+export const NorthMapContainer = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 5px solid green;
+
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  // }
+`;
+
+// South Map container styling //
 export const SouthMapContainer = styled.div`
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: row;
 
@@ -177,9 +194,9 @@ export const SouthMapContainer = styled.div`
   // }
 `;
 
-// Map container styling //
+// West Map container styling //
 export const WestMapContainer = styled.div`
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: row;
 
@@ -194,9 +211,9 @@ export const WestMapContainer = styled.div`
   // }
 `;
 
-// Map container styling //
+// East Map container styling //
 export const EastMapContainer = styled.div`
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: row;
 
@@ -211,9 +228,9 @@ export const EastMapContainer = styled.div`
   // }
 `;
 
-// Map container styling //
+// Center Map container styling //
 export const CenterMapContainer = styled.div`
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: row;
 

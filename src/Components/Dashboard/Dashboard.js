@@ -6,6 +6,12 @@ import {
   PageDiv,
   SplitContainer,
   MapContainer,
+  NorthMapContainer,
+  SouthMapContainer,
+  WestMapContainer,
+  EastMapContainer,
+  CenterMapContainer,
+  DummyMapContainer,
   RightContainer,
   InfoContainer,
   PlayerInfoContainer,
@@ -27,21 +33,20 @@ import {
 } from "semantic-ui-react";
 
 const transitions = [
-  'jiggle',
-  'flash',
-  'shake',
-  'pulse',
-  'tada',
-  'bounce',
-  'glow',
-]
+  "jiggle",
+  "flash",
+  "shake",
+  "pulse",
+  "tada",
+  "bounce",
+  "glow"
+];
 
-const options = transitions.map((name) => ({
+const options = transitions.map(name => ({
   key: name,
   text: name,
-  value: name,
-}))
-
+  value: name
+}));
 
 class Dashboard extends Component {
   state = {
@@ -222,6 +227,18 @@ class Dashboard extends Component {
               w_to: response.data.w_to
             });
           });
+      })
+      .then(response => {
+        // Gets id, username and
+        axios
+          .get("https://sonicthelambhog.herokuapp.com/api/adv/init", {
+            headers: { Authorization: "Token " + localStorage.getItem("Token") }
+          })
+          .then(res => {
+            this.setState({
+              players: res.data.players
+            });
+          });
       });
 
     console.log(
@@ -347,17 +364,20 @@ class Dashboard extends Component {
           <H1>Dashboard</H1>
 
           <SplitContainer>
-            <MapContainer>
+            <div>
               <H1>Map:</H1>
-              <Image
-                // onClick={this.toggleVisibility}
-                src="https://www.imageupload.net/upload-image/2020/01/26/4-1024x655.jpg"
-                as="a"
-                size="large"
-                // href="/login"
-                id="mapImage"
-              />
-            </MapContainer>
+              <MapContainer>
+                <DummyMapContainer />
+                <NorthMapContainer />
+                <DummyMapContainer />
+                <WestMapContainer />
+                <CenterMapContainer />
+                <EastMapContainer />
+                <DummyMapContainer />
+                <SouthMapContainer />
+                <DummyMapContainer />
+              </MapContainer>
+            </div>
 
             <RightContainer>
               <InfoContainer>
@@ -368,12 +388,8 @@ class Dashboard extends Component {
                   <P>Description:</P>
                   <P>{this.state.description}</P>
                   <P>Players in room:</P>
-                  {this.state.players.length === 0 && (
-                    <P>You're all alone.</P>
-                  )}
-                  {this.state.players.length > 0 && (
-                    <P>{this.state.players}</P>
-                  )}
+                  {this.state.players.length === 0 && <P>You're all alone.</P>}
+                  {this.state.players.length > 0 && <P>{this.state.players}</P>}
                 </RoomInfoContainer>
 
                 <PlayerInfoContainer>
