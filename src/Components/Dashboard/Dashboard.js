@@ -6,6 +6,7 @@ import {
   PageDiv,
   SplitContainer,
   MapContainer,
+  RowContainer,
   NorthMapContainer,
   SouthMapContainer,
   WestMapContainer,
@@ -367,15 +368,39 @@ class Dashboard extends Component {
             <div>
               <H1>Map:</H1>
               <MapContainer>
+                <RowContainer>
                 <DummyMapContainer />
-                <NorthMapContainer />
+                <NorthMapContainer>
+                {this.state.n_to === 0 && <P>X</P>}
+                {this.state.n_to !== 0 && <P>{this.state.n_to}</P>}
+                </NorthMapContainer>
                 <DummyMapContainer />
-                <WestMapContainer />
-                <CenterMapContainer />
-                <EastMapContainer />
+                </RowContainer>
+
+                <RowContainer>
+                <WestMapContainer>
+                {this.state.w_to === 0 && <P>X</P>}
+                {this.state.w_to !== 0 && <P>{this.state.w_to}</P>}
+                </WestMapContainer>
+
+                <CenterMapContainer>
+                <P>{this.state.currentRoom}</P>
+                </CenterMapContainer>
+
+                <EastMapContainer>
+                {this.state.e_to === 0 && <P>X</P>}
+                {this.state.e_to !== 0 && <P>{this.state.e_to}</P>}
+                </EastMapContainer>
+                </RowContainer>
+
+                <RowContainer>
                 <DummyMapContainer />
-                <SouthMapContainer />
+                <SouthMapContainer>
+                {this.state.s_to === 0 && <P>X</P>}
+                {this.state.s_to !== 0 && <P>{this.state.s_to}</P>}
+                </SouthMapContainer>
                 <DummyMapContainer />
+                </RowContainer>
               </MapContainer>
             </div>
 
