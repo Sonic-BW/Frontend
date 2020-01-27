@@ -74,6 +74,6 @@ export const ButtonLink = styled.button`
   font-family: Sonic;
   text-decoration: none;
   :hover {
-    color: #ff2cbe;
+    color: #ff2cbe !important;
   }
 `;
