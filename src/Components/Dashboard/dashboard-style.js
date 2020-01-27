@@ -132,9 +132,9 @@ export const MapContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
   align-content: space-around;
   align-items: center;
+  background-image: url("https://www.imageupload.net/upload-image/2020/01/27/grass.png");
   margin: 0 auto;
   padding: 2rem;
   border: 5px solid pink;

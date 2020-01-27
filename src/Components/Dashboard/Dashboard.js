@@ -369,37 +369,143 @@ class Dashboard extends Component {
               <H1>Map:</H1>
               <MapContainer>
                 <RowContainer>
-                <DummyMapContainer />
-                <NorthMapContainer>
-                {this.state.n_to === 0 && <P>X</P>}
-                {this.state.n_to !== 0 && <P>{this.state.n_to}</P>}
-                </NorthMapContainer>
-                <DummyMapContainer />
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
+
+                  <NorthMapContainer>
+                    {this.state.n_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.n_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-vertical.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </NorthMapContainer>
+
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
                 </RowContainer>
 
                 <RowContainer>
-                <WestMapContainer>
-                {this.state.w_to === 0 && <P>X</P>}
-                {this.state.w_to !== 0 && <P>{this.state.w_to}</P>}
-                </WestMapContainer>
+                  <WestMapContainer>
+                    {this.state.w_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.w_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-horizontal.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </WestMapContainer>
 
-                <CenterMapContainer>
-                <P>{this.state.currentRoom}</P>
-                </CenterMapContainer>
+                  <CenterMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/IMGBIN_sonic-the-hedgehog-sonic-dash-2-sonic-boom-sega-sonic-head-png_v0qVEtAh.png"
+                      as="a"
+                      size="small"
+                      id="centerImage"
+                    />
+                  </CenterMapContainer>
 
-                <EastMapContainer>
-                {this.state.e_to === 0 && <P>X</P>}
-                {this.state.e_to !== 0 && <P>{this.state.e_to}</P>}
-                </EastMapContainer>
+                  <EastMapContainer>
+                    {this.state.e_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.e_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-horizontal.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </EastMapContainer>
                 </RowContainer>
 
                 <RowContainer>
-                <DummyMapContainer />
-                <SouthMapContainer>
-                {this.state.s_to === 0 && <P>X</P>}
-                {this.state.s_to !== 0 && <P>{this.state.s_to}</P>}
-                </SouthMapContainer>
-                <DummyMapContainer />
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
+
+                  <SouthMapContainer>
+                    {this.state.s_to === 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                    {this.state.s_to !== 0 && (
+                      <Image
+                        // onClick={this.toggleVisibility}
+                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-vertical.png"
+                        as="a"
+                        size="small"
+                        id="dummyImage"
+                      />
+                    )}
+                  </SouthMapContainer>
+
+                  <DummyMapContainer>
+                    <Image
+                      // onClick={this.toggleVisibility}
+                      src="https://www.imageupload.net/upload-image/2020/01/27/rubble-explosion-png-art-3-transparent.png"
+                      as="a"
+                      size="small"
+                      id="dummyImage"
+                    />
+                  </DummyMapContainer>
                 </RowContainer>
               </MapContainer>
             </div>
@@ -414,9 +520,13 @@ class Dashboard extends Component {
                   <P>{this.state.description}</P>
                   <h2>Players in room:</h2>
                   {this.state.players.length === 0 && <P>You're all alone.</P>}
-                  {this.state.players.length > 0 && <P>{this.state.players.map(p => (
-                    <p>{p}</p>
-                    ))}</P>}
+                  {this.state.players.length > 0 && (
+                    <P>
+                      {this.state.players.map(p => (
+                        <p>{p}</p>
+                      ))}
+                    </P>
+                  )}
                 </RoomInfoContainer>
 
                 <PlayerInfoContainer>
