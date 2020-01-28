@@ -1,2 +1,2 @@
-https://zealous-poincare-b92bd3.netlify.com/
-heroku app name: sonicthelambhog
+https://zealous-poincare-b92bd3.netlify.com/ |||
+heroku app name: sonicthelambhog ||| https://sonicthelambhog.herokuapp.com/
