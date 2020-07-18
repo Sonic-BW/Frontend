@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import {
   PageDiv,
@@ -20,8 +20,8 @@ import {
   RoomInfoContainer,
   MovementHeaderContainer,
   MovementContainer,
-  Input,
-  Label,
+  // Input,
+  // Label,
   P,
   H1,
   H2,
@@ -33,7 +33,7 @@ import {
   Button,
   Transition,
   Icon,
-  Container
+  // Container
 } from "semantic-ui-react";
 
 const transitions = [
@@ -46,11 +46,11 @@ const transitions = [
   "glow"
 ];
 
-const options = transitions.map(name => ({
-  key: name,
-  text: name,
-  value: name
-}));
+// const options = transitions.map(name => ({
+//   key: name,
+//   text: name,
+//   value: name
+// }));
 
 class Dashboard extends Component {
   state = {

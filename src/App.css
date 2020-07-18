@@ -8,6 +8,16 @@ input[type="password"] {
   color: navy !important;
 }
 
+.Navbar {
+  background-color: black;
+}
+
+.lightning {
+  /* border: 1px solid white; */
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 /* NavBar Sign In Button Styling */
 
 .ui.button.signinButton {

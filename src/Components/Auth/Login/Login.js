@@ -108,7 +108,7 @@ class Login extends Component {
 
               <Image
                 // onClick={this.toggleVisibility}
-                src="https://www.imageupload.net/upload-image/2020/01/18/login-gif.gif"
+                src="https://img.imageupload.net/2020/07/18/sonicRunning.gif"
                 as="a"
                 size="large"
                 // href="/login"

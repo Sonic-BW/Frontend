@@ -17,9 +17,10 @@ class Navbar extends React.Component {
     return (
       <NavBar className="Navbar">
         <Image
-          src="https://www.imageupload.net/upload-image/2020/01/18/lambdog.gif"
+          className="lightning"
+          src="https://img.imageupload.net/2020/07/18/lightningStrike.gif"
           as="a"
-          size="tiny"
+          size="small"
           id="leftNavImage"
         />
 

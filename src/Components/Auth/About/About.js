@@ -57,7 +57,7 @@ class About extends Component {
             <Image
               circular
               onClick={this.toggleVisibility}
-              src="https://www.imageupload.net/upload-image/2020/01/27/shota.jpg"
+              src="https://img.imageupload.net/2020/07/18/ShotaProfile.jpg"
               as="a"
               size="small"
               href="https://www.linkedin.com/in/shotakikozashvili/"
@@ -97,7 +97,7 @@ class About extends Component {
             <Image
               circular
               onClick={this.toggleVisibility}
-              src="https://www.imageupload.net/upload-image/2020/01/27/tay.jpg"
+              src="https://img.imageupload.net/2020/07/18/Tay.jpg"
               as="a"
               size="small"
               href="https://taycodes.com/"
