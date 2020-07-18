@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Image } from "semantic-ui-react"
 
 // import { Link } from "react-router-dom";
 import axios from "axios";
@@ -121,6 +122,12 @@ class Registration extends Component {
                     Sign Up
                   </Button>
                 </div>
+                <Image
+                className="registrationGreeting"
+                src="https://img.imageupload.net/2020/07/18/SonicWaveExtended.gif"
+                as="a"
+                size="medium"
+              />
               </RegisterInputsContainer>
             </RegisterContainer>
           </Form>

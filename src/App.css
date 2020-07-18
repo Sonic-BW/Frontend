@@ -12,10 +12,17 @@ input[type="password"] {
   background-color: black;
 }
 
+/* ImageLink Break fixes */
 .lightning {
   /* border: 1px solid white; */
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+.registrationGreeting {
+  /* border: 1px solid wheat; */
+  margin-top: 2vh;
+  margin-left: 2vw;
 }
 
 /* NavBar Sign In Button Styling */

@@ -36,15 +36,15 @@ import {
   // Container
 } from "semantic-ui-react";
 
-const transitions = [
-  "jiggle",
-  "flash",
-  "shake",
-  "pulse",
-  "tada",
-  "bounce",
-  "glow"
-];
+// const transitions = [
+//   "jiggle",
+//   "flash",
+//   "shake",
+//   "pulse",
+//   "tada",
+//   "bounce",
+//   "glow"
+// ];
 
 // const options = transitions.map(name => ({
 //   key: name,

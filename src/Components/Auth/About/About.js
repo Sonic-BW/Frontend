@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import { H1, H2, H3, Section, AboutContainer } from "./about-style.js";
 
@@ -22,6 +22,7 @@ class About extends Component {
               size="small"
               href="https://www.linkedin.com/in/wsoukkachang"
               target="_blank"
+              rel="noopener noreferrer"
               bordered
             />
             <H3>Full Stack Developer</H3>
@@ -30,7 +31,7 @@ class About extends Component {
               <List.Item>
                 <List.Icon name="github" />
                 <List.Content>
-                  <a href="https://github.com/Wsoukkachang" target="_blank">
+                  <a href="https://github.com/Wsoukkachang" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
                 </List.Content>
@@ -42,6 +43,7 @@ class About extends Component {
                   <a
                     href="https://www.linkedin.com/in/wsoukkachang"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     LinkedIn
                   </a>
@@ -62,6 +64,7 @@ class About extends Component {
               size="small"
               href="https://www.linkedin.com/in/shotakikozashvili/"
               target="_blank"
+              rel="noopener noreferrer"
               bordered
             />
             <H3>Full Stack Developer</H3>
@@ -70,7 +73,7 @@ class About extends Component {
               <List.Item>
                 <List.Icon name="github" />
                 <List.Content>
-                  <a href="https://github.com/ShotaKiko" target="_blank">
+                  <a href="https://github.com/ShotaKiko" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
                 </List.Content>
@@ -82,6 +85,7 @@ class About extends Component {
                   <a
                     href="https://www.linkedin.com/in/shotakikozashvili/"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     LinkedIn
                   </a>
@@ -102,6 +106,7 @@ class About extends Component {
               size="small"
               href="https://taycodes.com/"
               target="_blank"
+              rel="noopener noreferrer"
               bordered
             />
             <H3>Full Stack Developer</H3>
@@ -110,7 +115,7 @@ class About extends Component {
               <List.Item>
                 <List.Icon name="github" />
                 <List.Content>
-                  <a href="https://github.com/Dionuta" target="_blank">
+                  <a href="https://github.com/Dionuta" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
                 </List.Content>
@@ -122,6 +127,7 @@ class About extends Component {
                   <a
                     href="https://www.linkedin.com/in/dionuta/"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     LinkedIn
                   </a>
