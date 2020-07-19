@@ -21,8 +21,12 @@ input[type="password"] {
 
 .registrationGreeting {
   /* border: 1px solid wheat; */
-  margin-top: 2vh;
+  margin-top: 3vh;
   margin-left: 2vw;
+}
+
+.loginComponent {
+  min-height:100vh;
 }
 
 /* NavBar Sign In Button Styling */

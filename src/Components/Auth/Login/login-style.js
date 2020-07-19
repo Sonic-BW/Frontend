@@ -115,6 +115,7 @@ export const LoginContainer = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
+  min-height: 86vh;
 
   align-content: space-around;
   align-items: center;
