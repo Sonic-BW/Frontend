@@ -414,7 +414,7 @@ class Dashboard extends Component {
                     {this.state.n_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_north.png"
+                        src="https://i.postimg.cc/rpxSkZHv/fence-north.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -423,7 +423,7 @@ class Dashboard extends Component {
                     {this.state.n_to !== 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-vertical.png"
+                        src="https://i.postimg.cc/BbYFgr81/dirt-vertical.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -447,7 +447,7 @@ class Dashboard extends Component {
                     {this.state.w_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_west.png"
+                        src="https://i.postimg.cc/B6CH8L4p/fence-west.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -456,7 +456,7 @@ class Dashboard extends Component {
                     {this.state.w_to !== 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-horizontal.png"
+                        src="https://i.postimg.cc/ZYV64dfK/dirt-horizontal.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -468,7 +468,7 @@ class Dashboard extends Component {
                     {this.state.move_n === true && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/New-north.png"
+                        src="https://i.postimg.cc/xT8MC17G/New-north.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -478,7 +478,7 @@ class Dashboard extends Component {
                     {this.state.move_s === true && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/south.png"
+                        src="https://i.postimg.cc/RVYfnz5k/south.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -488,7 +488,7 @@ class Dashboard extends Component {
                     {this.state.move_e === true && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/east.png"
+                        src="https://i.postimg.cc/bvct3HvL/east.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -498,7 +498,7 @@ class Dashboard extends Component {
                     {this.state.move_w === true && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/west.png"
+                        src="https://i.postimg.cc/nL4Q5jjx/west.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -510,7 +510,7 @@ class Dashboard extends Component {
                     {this.state.e_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_east.png"
+                        src="https://i.postimg.cc/C10bLHTd/fence-east.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -519,7 +519,7 @@ class Dashboard extends Component {
                     {this.state.e_to !== 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-horizontal.png"
+                        src="https://i.postimg.cc/ZYV64dfK/dirt-horizontal.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -543,7 +543,7 @@ class Dashboard extends Component {
                     {this.state.s_to === 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/fence_south.png"
+                        src="https://i.postimg.cc/BndxRfmT/fence-south.png"
                         as="a"
                         size="small"
                         id="dummyImage"
@@ -552,7 +552,7 @@ class Dashboard extends Component {
                     {this.state.s_to !== 0 && (
                       <Image
                         // onClick={this.toggleVisibility}
-                        src="https://www.imageupload.net/upload-image/2020/01/27/dirt-vertical.png"
+                        src="https://i.postimg.cc/BbYFgr81/dirt-vertical.png"
                         as="a"
                         size="small"
                         id="dummyImage"

@@ -86,7 +86,7 @@ export const MapContainer = styled.div`
   flex-direction: column;
   align-content: space-around;
   align-items: center;
-  background-image: url("https://www.imageupload.net/upload-image/2020/01/27/grass.png");
+  background-image: url("https://i.postimg.cc/3RMdFgK7/grass.png");
   margin: auto;
   padding: 1rem;
   border: 5px solid pink;
